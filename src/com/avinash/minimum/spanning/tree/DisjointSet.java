@@ -1,0 +1,54 @@
+package com.avinash.minimum.spanning.tree;
+
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DisjointSet {
+    private List<Node> rootNodes = new ArrayList<>();
+    private int setCount = 0;
+
+    public DisjointSet(@NotNull List<Vertex> vertices) {
+        vertices.forEach(this::makeSet);
+    }
+
+    private void makeSet(@NotNull Vertex vertex) {
+        final Node node = new Node(this.rootNodes.size());
+        vertex.setNode(node);
+        this.rootNodes.add(node);
+        this.setCount++;
+    }
+
+    public int find(@NotNull Vertex vertex) {
+        Node currentNode = vertex.getNode();
+        while (currentNode.getParentNode() != null) {
+            currentNode = currentNode.getParentNode();
+        }
+        final Node rootNode = currentNode;
+        currentNode = vertex.getNode();
+        while (rootNode != currentNode) {
+            Node parentNode = currentNode.getParentNode();
+            currentNode.setParentNode(rootNode);
+            currentNode = parentNode;
+        }
+        return rootNode.getId();
+    }
+
+    public void union(Vertex vertex1, Vertex vertex2) {
+        final int index1 = find(vertex1);
+        final int index2 = find(vertex2);
+        if (index1 == index2) {
+            return;
+        }
+        if (vertex1.getNode().getRank() < vertex2.getNode().getRank()) {
+            vertex1.getNode().setParentNode(vertex2.getNode());
+        } else if (vertex1.getNode().getRank() > vertex2.getNode().getRank()) {
+            vertex2.getNode().setParentNode(vertex1.getNode());
+        } else {
+            vertex1.getNode().setParentNode(vertex2.getNode());
+            vertex2.getNode().setRank(vertex2.getNode().getRank() + 1);
+        }
+        this.setCount--;
+    }
+}
