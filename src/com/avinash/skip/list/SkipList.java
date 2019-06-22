@@ -5,87 +5,82 @@ import java.util.List;
 import java.util.Random;
 
 public class SkipList<T extends Comparable<T>> {
-    private final List<Node<T>> headers = new ArrayList<>();
     private final int levels;
-    private final Random random = new Random();
-    public int numberOfComparision = 0;
+    private Random random;
+    private List<Node<T>> headers;
 
     public SkipList(int levels) {
         this.levels = levels;
-        for (int i = 0; i < this.levels; i++) {
+        this.headers = new ArrayList<>();
+        this.random = new Random();
+        for (int i = this.levels - 1; i >= 0; i--) {
             this.headers.add(null);
         }
     }
 
     public static void main(String[] args) {
         SkipList<Integer> skipList = new SkipList<>(5);
-        for (int i = 0; i < 98; i += 2) {
+        for (int i = 0; i < 90; i += 2) {
             skipList.insert(i);
         }
-        skipList.insert(11);
+        skipList.insert(19);
         skipList.display();
-        System.out.println(skipList.find(11));
-        System.out.println("Number of comparision " + skipList.numberOfComparision);
+        System.out.println(skipList.find(21));
     }
 
     public void insert(T data) {
-        if (this.headers.get(0) == null) {
-            createHeader(data);
-        } else if (this.headers.get(0).compareTo(data) > 0) {
-            updateHeader(data);
+        final int level = randomLevel();
+        if (this.headers.get(level) == null) {
+            Node prevLevel = null;
+            for (int i = this.levels - 1; i >= 0; i--) {
+                this.headers.set(i, new Node<>(data, prevLevel, null));
+                prevLevel = this.headers.get(i);
+            }
+        } else if (this.headers.get(level).compareTo(data) > 0) {
+            Node prevLevel = null;
+            for (int i = this.levels - 1; i >= 0; i--) {
+                this.headers.set(i, new Node<>(data, prevLevel, this.headers.get(i)));
+                prevLevel = this.headers.get(i);
+            }
         } else {
-            final int level = randomLevel();
-            Node<T> nextLevel = null;
-            for (int i = this.headers.size() - 1; i >= level; i--) {
-                Node<T> node = this.headers.get(i);
-                Node<T> prevNode = null;
-                while (node != null) {
-                    prevNode = node;
-                    if (node.compareTo(data) == 0) {
-                        break;
-                    } else if (node.compareTo(data) < 0) {
-                        if (node.getNext() != null && node.getNext().compareTo(data) < 0) {
-                            node = node.getNext();
-                        } else {
-                            break;
-                        }
+            Node<T> levelUpNode = null;
+            for (int i = level; i < this.levels; i++) {
+                final Node<T> nearNode = findNearNode(data, this.headers.get(i), null);
+                if (nearNode.compareTo(data) == 0) {
+                    throw new RuntimeException("Element already exist");
+                } else {
+                    final Node<T> newNode = new Node<>(data, null, nearNode.getNext());
+                    nearNode.setNext(newNode);
+                    if (levelUpNode != null) {
+                        levelUpNode.setNextLevel(newNode);
                     }
+                    levelUpNode = newNode;
                 }
-                final Node<T> newNode = new Node<>(data);
-                newNode.setNext(prevNode.getNext());
-                prevNode.setNext(newNode);
-                newNode.setNextLevel(nextLevel);
-                nextLevel = newNode;
             }
         }
     }
 
-    public Node<T> find(T data) {
-        return find(data, this.headers.get(0));
+    private Node<T> find(T data) {
+        Node<T> node = this.headers.get(0);
+        while (node.getNextLevel() != null) {
+            final Node<T> nearNode = findNearNode(data, node, null);
+            node = nearNode.getNextLevel();
+        }
+        return node;
     }
 
-    private Node<T> find(T data, Node<T> node) {
-        Node prevNode = null;
-        while (node != null && node.compareTo(data) <= 0) {
-            prevNode = node;
-            node = node.getNext();
-        }
-        if(prevNode.getNextLevel() != null) {
-            return find(data, prevNode.getNextLevel());
-        } else {
-            if(prevNode.compareTo(data) == 0) {
-                return prevNode;
+    private Node<T> findNearNode(T data, Node<T> node, Node<T> prevNode) {
+        if (node.compareTo(data) == 0) {
+            return node;
+        } else if (node.compareTo(data) < 0) {
+            if (node.getNext() == null) {
+                return node;
             } else {
-                while (prevNode != null) {
-                    if(prevNode.compareTo(data) == 0) {
-                        return prevNode;
-                    } else {
-                        prevNode = prevNode.getNext();
-                    }
-                }
+                return findNearNode(data, node.getNext(), node);
             }
+        } else {
+            return prevNode;
         }
-        return prevNode;
     }
 
     public void display() {
@@ -96,27 +91,6 @@ public class SkipList<T extends Comparable<T>> {
                 node = node.getNext();
             }
             System.out.println(" ");
-        }
-    }
-
-    private void updateHeader(T data) {
-        Node<T> levelDown = null;
-        for (int i = this.headers.size() - 1; i >= 0; i--) {
-            final Node<T> newNode = new Node<>(data);
-            newNode.setNextLevel(levelDown);
-            newNode.setNext(this.headers.get(i));
-            levelDown = newNode;
-            this.headers.set(i, newNode);
-        }
-    }
-
-    private void createHeader(T data) {
-        Node<T> levelDown = null;
-        for (int i = this.levels - 1; i >= 0; i--) {
-            final Node<T> newNode = new Node<>(data);
-            newNode.setNextLevel(levelDown);
-            levelDown = newNode;
-            this.headers.set(i, newNode);
         }
     }
 
