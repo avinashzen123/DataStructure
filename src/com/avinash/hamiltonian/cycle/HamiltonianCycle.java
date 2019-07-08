@@ -23,12 +23,7 @@ public class HamiltonianCycle {
 
 	private boolean hamiltonianUtil(Vertex vertex) {
 		if (this.path.size() == this.graph.getVertexs().size()) {
-			for (Edge edge : this.graph.getAdjacencies().get(vertex.getId())) {
-				if (edge.getEndVertex() == this.path.get(0)) {
-					return true;
-				}
-			}
-			return false;
+			return this.graph.getAdjacencies().get(vertex.getId()).stream().map(Edge::getEndVertex).collect(Collectors.toList()).contains(this.path.get(0));
 		}
 		for (Edge edge : this.graph.getAdjacencies().get(vertex.getId())) {
 			if (!this.path.contains(edge.getEndVertex())) {//isSafe(edge.getEndVertex(), vertex)
@@ -44,9 +39,7 @@ public class HamiltonianCycle {
 	}
 
 	public void displayCycle() {
-		for (Vertex vertex: this.path) {
-			System.out.print(vertex + " ");
-		}
+		this.path.forEach(System.out::print);
 		System.out.println(this.path.get(0));
 	}
 

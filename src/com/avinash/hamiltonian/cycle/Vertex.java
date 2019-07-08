@@ -13,6 +13,6 @@ public class Vertex {
 	
 	@Override
 	public String toString() {
-		return this.id.toString();
+		return this.id.toString() + " ";
 	}
 }
