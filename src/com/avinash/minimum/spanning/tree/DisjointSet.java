@@ -7,7 +7,6 @@ import java.util.List;
 
 public class DisjointSet {
     private List<Node> rootNodes = new ArrayList<>();
-    private int setCount = 0;
 
     public DisjointSet(@NotNull List<Vertex> vertices) {
         vertices.forEach(this::makeSet);
@@ -17,7 +16,6 @@ public class DisjointSet {
         final Node node = new Node(this.rootNodes.size());
         vertex.setNode(node);
         this.rootNodes.add(node);
-        this.setCount++;
     }
 
     public int find(@NotNull Vertex vertex) {
@@ -49,6 +47,5 @@ public class DisjointSet {
             vertex1.getNode().setParentNode(vertex2.getNode());
             vertex2.getNode().setRank(vertex2.getNode().getRank() + 1);
         }
-        this.setCount--;
     }
 }
