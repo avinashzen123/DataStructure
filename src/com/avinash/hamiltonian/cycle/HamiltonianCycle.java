@@ -17,7 +17,7 @@ public class HamiltonianCycle {
 	public void hamiltonianCycle(Vertex vertex) {
 		this.path.add(vertex);
 		if (hamiltonianUtil(vertex) == false) {
-			System.out.println("\nSolution does not exist");
+			System.out.println("Solution does not exist");
 		}
 	}
 
