@@ -33,6 +33,6 @@ public class App {
         edgeList.add(new Edge(vertexList.get(6), vertexList.get(7), (double) 6));
 
         new KrushkalAlgorithm(vertexList, edgeList);
-
+        //Output - A C - B D - C D - F G - D G - F H - D E - D F - G H - 
     }
 }
