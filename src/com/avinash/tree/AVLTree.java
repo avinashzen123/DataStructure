@@ -124,6 +124,19 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         return node == null ? -1 : node.getHeight();
     }
 
+    /**
+               14               
+              / \       
+             /   \      
+            /     \     
+           /       \    
+           11       23       
+          / \     / \   
+         /   \   /   \  
+         10   13   22   25   
+            /   /       
+            12   16  
+    **/
 
     public static void main(String[] args) {
         AVLTree<Integer> tree = new AVLTree<>();
