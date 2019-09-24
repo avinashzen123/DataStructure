@@ -63,5 +63,7 @@ public class DijkstraAlgorithm {
         shortestPath1.displayPath(vertexes.get(3));
 
     }
+    
+    //0, 1, 2, 3, 
 
 }
