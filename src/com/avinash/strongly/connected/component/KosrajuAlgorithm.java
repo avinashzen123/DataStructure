@@ -77,4 +77,16 @@ public class KosrajuAlgorithm {
         }
 
     }
+    
+    /**
+        3
+        a 2 - 2
+        b 2 - 2
+        c 1 - 1
+        d 1 - 1
+        e 2 - 2
+        f 0 - 0
+        g 0 - 0
+        h 1 - 1
+    **/
 }
