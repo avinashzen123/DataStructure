@@ -23,6 +23,11 @@ public class FordFulkerson {
         }
     }
 
+    /**
+    Maximum flow is: 8.0
+    Vertices in the min cut set: 
+    0 - 1 - 2 -
+    **/
     public static void main(String[] args) {
         FlowNetwork flowNetwork = new FlowNetwork(4);
 
