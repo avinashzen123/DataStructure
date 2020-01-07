@@ -1,0 +1,5 @@
+rm ~/.GoLand2018.1/config/eval/GoLand181.evaluation.key
+sed -i '/evlsprt3.181/d' ~/.GoLand2018.1/config/options/options.xml
+sed -i '/evlsprt2.181/d' ~/.GoLand2018.1/config/options/options.xml
+sed -i '/evlsprt.181/d' ~/.GoLand2018.1/config/options/options.xml
+rm -r  ~/.java/.userPrefs/jetbrains/goland/
