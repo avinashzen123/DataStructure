@@ -31,13 +31,13 @@ public class SkipList<T extends Comparable<T>> {
     public void insert(T data) {
         final int level = randomLevel();
         if (this.headers.get(level) == null) {
-            Node prevLevel = null;
+            Node<T> prevLevel = null;
             for (int i = this.levels - 1; i >= 0; i--) {
                 this.headers.set(i, new Node<>(data, prevLevel, null));
                 prevLevel = this.headers.get(i);
             }
         } else if (this.headers.get(level).compareTo(data) > 0) {
-            Node prevLevel = null;
+            Node<T> prevLevel = null;
             for (int i = this.levels - 1; i >= 0; i--) {
                 this.headers.set(i, new Node<>(data, prevLevel, this.headers.get(i)));
                 prevLevel = this.headers.get(i);

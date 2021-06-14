@@ -1,4 +1,4 @@
-package datastructure.array.sorting;
+package com.avinash.sorting;
 
 import java.util.Arrays;
 

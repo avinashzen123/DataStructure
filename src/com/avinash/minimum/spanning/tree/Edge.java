@@ -1,6 +1,5 @@
 package com.avinash.minimum.spanning.tree;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Edge implements Comparable<Edge> {
     private final Vertex startVertex, endVertex;
@@ -25,7 +24,7 @@ public class Edge implements Comparable<Edge> {
     }
 
     @Override
-    public int compareTo(@NotNull Edge o) {
+    public int compareTo(Edge o) {
         return Double.compare(weight, o.weight);
     }
 

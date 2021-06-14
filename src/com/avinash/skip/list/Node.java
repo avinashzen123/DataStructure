@@ -1,6 +1,5 @@
 package com.avinash.skip.list;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Node<T extends Comparable<T>> implements Comparable<T> {
 
@@ -42,7 +41,7 @@ public class Node<T extends Comparable<T>> implements Comparable<T> {
     }
 
     @Override
-    public int compareTo(@NotNull T o) {
+    public int compareTo(T o) {
         return data.compareTo(o);
     }
 

@@ -1,10 +1,9 @@
 package com.avinash.search.ternary.tree;
 
-import org.jetbrains.annotations.NotNull;
 
 public class Node<T extends Comparable<T>> implements Comparable<Character> {
     private final Character character;
-    private Node leftNode, rightNode, middleNode;
+    private Node<T> leftNode, rightNode, middleNode;
     private T data;
 
     public Node(Character character) {
@@ -16,27 +15,27 @@ public class Node<T extends Comparable<T>> implements Comparable<Character> {
         this.data = data;
     }
 
-    public Node getLeftNode() {
+    public Node<T> getLeftNode() {
         return leftNode;
     }
 
-    public void setLeftNode(Node leftNode) {
+    public void setLeftNode(Node<T> leftNode) {
         this.leftNode = leftNode;
     }
 
-    public Node getRightNode() {
+    public Node<T> getRightNode() {
         return rightNode;
     }
 
-    public void setRightNode(Node rightNode) {
+    public void setRightNode(Node<T> rightNode) {
         this.rightNode = rightNode;
     }
 
-    public Node getMiddleNode() {
+    public Node<T> getMiddleNode() {
         return middleNode;
     }
 
-    public void setMiddleNode(Node middleNode) {
+    public void setMiddleNode(Node<T> middleNode) {
         this.middleNode = middleNode;
     }
 
@@ -53,7 +52,7 @@ public class Node<T extends Comparable<T>> implements Comparable<Character> {
     }
 
     @Override
-    public int compareTo(@NotNull Character o) {
+    public int compareTo(Character o) {
         return character.compareTo(o);
     }
 }

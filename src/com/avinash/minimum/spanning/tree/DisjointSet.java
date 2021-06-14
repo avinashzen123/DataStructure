@@ -1,6 +1,5 @@
 package com.avinash.minimum.spanning.tree;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,17 +7,17 @@ import java.util.List;
 public class DisjointSet {
     private List<Node> rootNodes = new ArrayList<>();
 
-    public DisjointSet(@NotNull List<Vertex> vertices) {
+    public DisjointSet(List<Vertex> vertices) {
         vertices.forEach(this::makeSet);
     }
 
-    private void makeSet(@NotNull Vertex vertex) {
+    private void makeSet(Vertex vertex) {
         final Node node = new Node(this.rootNodes.size());
         vertex.setNode(node);
         this.rootNodes.add(node);
     }
 
-    public int find(@NotNull Vertex vertex) {
+    public int find(Vertex vertex) {
         Node currentNode = vertex.getNode();
         while (currentNode.getParentNode() != null) {
             currentNode = currentNode.getParentNode();
