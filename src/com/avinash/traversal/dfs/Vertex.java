@@ -1,4 +1,4 @@
-package com.avinash.dfs;
+package com.avinash.traversal.dfs;
 import java.util.ArrayList;
 import java.util.List;
 

@@ -1,6 +1,5 @@
-package com.avinash.dfs;
+package com.avinash.traversal.dfs;
 import java.util.List;
-import java.util.Stack;
 
 public class DepthFirstSearchRecursion {
 	
@@ -17,7 +16,7 @@ public class DepthFirstSearchRecursion {
 
 	private void dfsHelper(Vertex vertex) {
 		
-		System.out.println(vertex);
+		System.out.print(vertex + " ");
 		
 		for(Vertex v : vertex.getNeighbors()) {
 			if(!v.isVisited()) {

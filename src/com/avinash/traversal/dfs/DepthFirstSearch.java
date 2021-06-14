@@ -1,4 +1,4 @@
-package com.avinash.dfs;
+package com.avinash.traversal.dfs;
 import java.util.List;
 import java.util.Stack;
 
@@ -30,7 +30,7 @@ public class DepthFirstSearch {
 		while(!stack.isEmpty()) {
 			
 			Vertex actualVertex = stack.pop();
-			System.out.println(actualVertex);
+			System.out.print(actualVertex + " ");
 			
 			// consider all the neighbors
 			for(Vertex v : actualVertex.getNeighbors()) {

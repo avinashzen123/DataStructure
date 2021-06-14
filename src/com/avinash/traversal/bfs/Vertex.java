@@ -1,4 +1,4 @@
-package com.avinash.bfs;
+package com.avinash.traversal.bfs;
 import java.util.ArrayList;
 import java.util.List;
 

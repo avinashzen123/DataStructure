@@ -1,4 +1,4 @@
-package com.avinash.bfs;
+package com.avinash.traversal.bfs;
 public class App {
 
 	public static void main(String[] args) {

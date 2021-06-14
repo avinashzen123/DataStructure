@@ -1,4 +1,4 @@
-package com.avinash.dfs;
+package com.avinash.traversal.dfs;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,6 +6,16 @@ public class App {
 
 	public static void main(String[] args) {
 		
+		
+		DepthFirstSearchRecursion dfs = new DepthFirstSearchRecursion();
+		dfs.dfs(graph());
+		System.out.println("");
+		DepthFirstSearch df = new DepthFirstSearch();
+		df.dfs(graph());
+		
+	}
+
+	private static List<Vertex> graph() {
 		Vertex v1 = new Vertex("A");
 		Vertex v2 = new Vertex("B");
 		Vertex v3 = new Vertex("C");
@@ -32,8 +42,6 @@ public class App {
 		list.add(v6);
 		list.add(v7);
 		list.add(v8);
-		
-		DepthFirstSearchRecursion dfs = new DepthFirstSearchRecursion();
-		dfs.dfs(list);
+		return list;
 	}
 }
