@@ -20,7 +20,7 @@ public interface Tree<T extends Comparable<T>> {
     }
 
     default void bfsTraversal(Node<T> node) {
-        Stack<Node> stack = new Stack<>();
+        Stack<Node<T>> stack = new Stack<>();
         stack.add(node);
         while (!stack.isEmpty()) {
             System.out.print(node);

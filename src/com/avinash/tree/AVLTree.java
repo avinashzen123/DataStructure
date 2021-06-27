@@ -28,9 +28,9 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         if (node == null) {
             return new Node<>(data);
         }
-        if (node.compareTo(data) > 0) {
+        if (node.getData().compareTo(data) > 0) {
             node.setLeftNode(insert(data, node.getLeftNode()));
-        } else if (node.compareTo(data) < 0) {
+        } else if (node.getData().compareTo(data) < 0) {
             node.setRightNode(insert(data, node.getRightNode()));
         }
         setHeight(node);
@@ -40,12 +40,12 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
     private Node<T> settleInsertViolation(T data, Node<T> node) {
         final int balance = balance(node);
         if (balance > 1) {//Left heavy situation
-            if (node.getLeftNode().compareTo(data) < 0) {//Left right situation
+            if (node.getLeftNode().getData().compareTo(data) < 0) {//Left right situation
                 node.setLeftNode(lefRotate(node.getLeftNode()));
             }
             return rightRotate(node);
         } else if (balance < -1) { //Right Heavy situation
-            if (node.getRightNode().compareTo(data) > 0) {//Right left heavy situation
+            if (node.getRightNode().getData().compareTo(data) > 0) {//Right left heavy situation
                 node.setRightNode(rightRotate(node.getRightNode()));
             }
             return lefRotate(node);
@@ -57,9 +57,9 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         if (node == null) {
             return null;
         }
-        if (node.compareTo(data) > 0) {
+        if (node.getData().compareTo(data) > 0) {
             node.setLeftNode(delete(data, node.getLeftNode()));
-        } else if (node.compareTo(data) < 0) {
+        } else if (node.getData().compareTo(data) < 0) {
             node.setRightNode(delete(data, node.getRightNode()));
         } else {
             if (node.getLeftNode() == null && node.getRightNode() == null) {
@@ -87,15 +87,15 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
             return rightRotate(node);
         } else if (balance < -1) {
             if (balance(node.getRightNode()) > 0) {
-                node.setRightNode(node.getRightNode());
+                node.setRightNode(rightRotate(node.getRightNode()));
             }
             return lefRotate(node);
         }
         return node;
     }
 
-    private Node lefRotate(Node node) {
-        final Node rightNode = node.getRightNode();
+    private Node<T> lefRotate(Node<T> node) {
+        final Node<T> rightNode = node.getRightNode();
         node.setRightNode(rightNode.getLeftNode());
         rightNode.setLeftNode(node);
         setHeight(node);
@@ -103,8 +103,8 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         return rightNode;
     }
 
-    private Node rightRotate(Node node) {
-        final Node leftNode = node.getLeftNode();
+    private Node<T> rightRotate(Node<T> node) {
+        final Node<T> leftNode = node.getLeftNode();
         node.setLeftNode(leftNode.getRightNode());
         leftNode.setRightNode(node);
         setHeight(node);
@@ -112,15 +112,15 @@ public class AVLTree<T extends Comparable<T>> implements Tree<T> {
         return leftNode;
     }
 
-    private void setHeight(Node node) {
+    private void setHeight(Node<T> node) {
         node.setHeight(Math.max(height(node.getLeftNode()), height(node.getRightNode())) + 1);
     }
 
-    private int balance(Node node) {
+    private int balance(Node<T> node) {
         return node == null ? 0 : height(node.getLeftNode()) - height(node.getRightNode());
     }
 
-    private int height(Node node) {
+    private int height(Node<T> node) {
         return node == null ? -1 : node.getHeight();
     }
 

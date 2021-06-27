@@ -31,7 +31,7 @@ public class Vertex implements Comparable<Vertex> {
 
     @Override
     public String toString() {
-        return name + " " + distance;
+        return name + "-" + distance;
     }
 
     @Override

@@ -9,15 +9,15 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
         Node<T> parentNode = null;
         while (currentNode != null) {
             parentNode = currentNode;
-            currentNode = currentNode.compareTo(data) < 0 ? currentNode.getRightNode() : currentNode.getLeftNode();
+            currentNode = currentNode.getData().compareTo(data) < 0 ? currentNode.getRightNode() : currentNode.getLeftNode();
         }
         currentNode = new Node<>(data);
         currentNode.setParentNode(parentNode);
         if(this.root == null) {
             this.root = currentNode;
-        } else if(parentNode.compareTo(data) > 0) {
+        } else if(parentNode.getData().compareTo(data) > 0) {
             parentNode.setLeftNode(currentNode);
-        } else if(parentNode.compareTo(data) < 0) {
+        } else if(parentNode.getData().compareTo(data) < 0) {
             parentNode.setRightNode(currentNode);
         }
         splay(currentNode);
@@ -60,8 +60,8 @@ public class SplayTree<T extends Comparable<T>> implements Tree<T> {
         setParent(node, rightNode);
     }
 
-    private void rightRotate(Node node) {
-        final Node leftNode = node.getLeftNode();
+    private void rightRotate(Node<T> node) {
+        final Node<T> leftNode = node.getLeftNode();
         node.setLeftNode(leftNode.getRightNode());
         if(node.getLeftNode() != null) {
             node.getLeftNode().setParentNode(node);

@@ -7,7 +7,7 @@ public class TernarySearchTree<T extends Comparable<T>> {
         this.root = put(this.root, key, value, 0);
     }
 
-    private Node<T> put(Node node, String key, T value, int index) {
+    private Node<T> put(Node<T> node, String key, T value, int index) {
         final Character character = key.charAt(index);
         if (node == null) {
             node = new Node<>(character);
