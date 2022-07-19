@@ -21,8 +21,7 @@ public class InfixToPostfix {
 		}
 	}
 	
-//	/Users/avinashsharma/Documents/GitHub/DataStructure/src/com/avinash
-
+	
 	public static String infixToPostfix(String exp) {
 		String result = "";
 
