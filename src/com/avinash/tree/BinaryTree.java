@@ -62,7 +62,7 @@ public class BinaryTree<T extends Comparable<T>> {
 				if (parent.getLeftNode().equals(node)) {
 					parent.setLeftNode(leftNode);
 				} else {
-					parent.setRightNode(leftNode);
+					parent.setRightNode(rightNode);
 				}
 			} else {
 				Node<T> predecessor = node.getLeftNode();
