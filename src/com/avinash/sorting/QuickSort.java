@@ -26,15 +26,15 @@ public class QuickSort {
         }
     }
     
-    private int findPivot(int low, int high) {
-		for (;low < high; low++) {
-			if(this.array[low] >= this.array[high]) {
-				swap(high, low);
-			}
-		}
-		swap(low, high);
-		return low;
-	}
+//    private int findPivot(int low, int high) {
+//		for (;low < high; low++) {
+//			if(this.array[low] >= this.array[high]) {
+//				swap(high, low);
+//			}
+//		}
+//		swap(low, high);
+//		return low;
+//	}
 
     private int partition(int low, int high) {
         int pivot = this.array[high];

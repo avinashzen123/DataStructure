@@ -1,7 +1,7 @@
 package com.avinash.trie.associative_array;
 
 public class TrieAssociativeArray {
-    private Node root;
+    protected Node root;
 
     public TrieAssociativeArray() {
         this.root = new Node("");
