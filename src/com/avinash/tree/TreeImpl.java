@@ -49,7 +49,7 @@ public class TreeImpl {
         postOrder(node.right);
         System.out.print(node.data + "-");
     }
-
+    
     public static void main(String[] args) {
         TreeImpl tree = new TreeImpl();
         tree.head = new TreeNode(1);

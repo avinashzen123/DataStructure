@@ -31,8 +31,8 @@ public class MergeSort {
     }
 
     private void merge(int low, int middle, int high) {
-        int leftSubArray[] = this.createSubArray(middle - low + 1, low);
-        int rightSubArray[] = this.createSubArray(high - middle, middle + 1);
+        int leftSubArray[] = this.createSubArray(low, middle - low + 1);
+        int rightSubArray[] = this.createSubArray(middle + 1, high - middle);
         int i = 0, j = 0, k = low;
         while (i < leftSubArray.length && j < rightSubArray.length) {
             this.array[k++] = leftSubArray[i] <= rightSubArray[j] ? leftSubArray[i++] : rightSubArray[j++];
@@ -47,7 +47,7 @@ public class MergeSort {
         return k;
     }
 
-    private int[] createSubArray(int size, int parentStartIndex) {
+    private int[] createSubArray(int parentStartIndex, int size) {
         int array[] = new int[size];
         for (int i = 0; i < array.length; i++) {
             array[i] = this.array[parentStartIndex + i];
