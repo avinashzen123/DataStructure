@@ -46,6 +46,27 @@ public class KnapSackProblem {
 		}
 	}
 	
+	public static void solve(int[] weights, int[] values, int capacity, int numberOfItems) {
+		int[][] dpTable = new int[numberOfItems + 1][capacity + 1];
+		for (int valIndex = 1; valIndex <= numberOfItems; valIndex++) {
+			for (int weight = 1; weight <= capacity; weight++) {
+				if (weights[valIndex] <= weight) {
+					dpTable[valIndex][weight] = Math.max(dpTable[valIndex - 1][weight],
+							values[valIndex] + dpTable[valIndex - 1][weight - weights[valIndex]]);
+				} else {
+					dpTable[valIndex][weight] = dpTable[valIndex-1][weight];
+				}
+			}
+		}
+		System.out.println("Total Benifit :" + dpTable[numberOfItems][capacity]);
+		for (int i = numberOfItems, w = capacity; i > 0; i--) {
+			if(dpTable[i][w] != 0 && dpTable[i][w] != dpTable[i-1][w]) {
+				System.out.println("We take item # " +i);
+				w = w - weights[i];
+			}
+		}
+	}
+	
 	public static void main(String[] args) {
 		int numOfItems = 4;
 		int capacityOfKnapsack = 7;
@@ -56,6 +77,7 @@ public class KnapSackProblem {
 		problem.showResult();
 		
 		System.out.println(problem.solveRecursive(capacityOfKnapsack, weightOfItems, profitOfItems, numOfItems));
+		solve(weightOfItems, profitOfItems, capacityOfKnapsack, numOfItems);
 	}
 	
 	public int solveRecursive(int m, int[] w, int[] v, int n) {

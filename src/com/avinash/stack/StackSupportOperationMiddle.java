@@ -1,40 +1,17 @@
 package com.avinash.stack;
 
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+
+@Data
+@RequiredArgsConstructor
 class DLLNode {
-    private Integer data;
+    private final Integer data;
     private DLLNode next, prev;
-
-    public DLLNode(Integer data) {
-        this.data = data;
-    }
-
-    public Integer getData() {
-        return data;
-    }
-
-    public void setData(Integer data) {
-        this.data = data;
-    }
-
-    public DLLNode getNext() {
-        return next;
-    }
-
-    public void setNext(DLLNode next) {
-        this.next = next;
-    }
-
-    public DLLNode getPrev() {
-        return prev;
-    }
-
-    public void setPrev(DLLNode prev) {
-        this.prev = prev;
-    }
 }
 
 public class StackSupportOperationMiddle {
-    private DLLNode head, middle, prev, next;
+    private DLLNode head, middle;
     private int size;
 
     public void push(Integer data) {
