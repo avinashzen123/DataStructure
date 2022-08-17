@@ -21,7 +21,6 @@ public class KnapSackProblem {
 	
 	
 	public void solve() {
-		//Initialize
 		//Time complexity : O(n * M)
 		for (int i = 1; i < n + 1; i++) {
 			for (int w = 1; w < capacity + 1; w++) {

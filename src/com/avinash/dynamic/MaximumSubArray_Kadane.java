@@ -1,9 +1,9 @@
 package com.avinash.dynamic;
 
-public class KadaneAlgorithm {
+public class MaximumSubArray_Kadane {
 	
 	//O(n)linear time complexity
-	public int run(int[] nums) {
+	public int kadaneAlgorithm(int[] nums) {
 		int globalMax = nums[0];
 		int localMax = nums[0];
 		
@@ -18,7 +18,7 @@ public class KadaneAlgorithm {
 	
 	public static void main(String[] args) {
 		int[] n = {1,-2,3,4};
-		KadaneAlgorithm algorithm = new KadaneAlgorithm();
-		System.out.println(algorithm.run(n));
+		MaximumSubArray_Kadane algorithm = new MaximumSubArray_Kadane();
+		System.out.println(algorithm.kadaneAlgorithm(n));
 	}
 }
