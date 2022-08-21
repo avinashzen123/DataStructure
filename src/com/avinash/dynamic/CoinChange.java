@@ -6,7 +6,7 @@ public class CoinChange {
 
 	public static int coinChange(int[] coins, int amount) {
 		int[] dp = new int[amount + 1];
-		IntStream.range(0, amount+1).forEach(i -> dp[i] = amount);
+		IntStream.range(0, amount+1).forEach(i -> dp[i] = Integer.MAX_VALUE);
 		dp[0] = 0;
 		for (int i = 1; i <= amount; i++) {
 			for (int coin : coins) {
@@ -17,7 +17,7 @@ public class CoinChange {
 		}
 		return dp[amount] == 0? -1 : dp[amount];
 	}
-	
+
 	public static void main(String[] args) {
 		int[] coins = new int[] {1,3,4,5};
 		int amount = 7;

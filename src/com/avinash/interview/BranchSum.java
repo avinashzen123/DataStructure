@@ -1,8 +1,5 @@
 package com.avinash.interview;
 
-import java.util.Queue;
-import java.util.LinkedList;
-
 class BinaryTree {
 	int value;
 	BinaryTree left;

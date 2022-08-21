@@ -3,20 +3,23 @@ package com.avinash.dynamic;
 import java.util.stream.IntStream;
 
 public class StairCaseProblem {
-	private int[] dp;
-	public StairCaseProblem(int n) {
-		dp = new int[n];
+
+	public int climbStairs(int n) {
+		int[] dp = new int[n];
 		IntStream.range(0, n).forEach(i -> dp[i] = -1);
+		return climbStaires(n, dp);
 	}
-	public int stairs(int n) {
-		if (n <=2) return n;
-		if (dp[n-1] != -1) return dp[n];
-		dp[n-1] = stairs(n-1) + stairs(n - 2);
-		return dp[n-1];
+
+	private int climbStaires(int n, int[] dp) {
+		if (n <= 2) return n;
+		if (dp[n - 1] != -1) return dp[n - 1];
+		dp[n - 1] = climbStaires(n - 1, dp) + climbStaires(n - 2, dp);
+		return dp[n - 1];
 	}
-	
+
 	public static void main(String[] args) {
-		StairCaseProblem caseProblem = new StairCaseProblem(5);
-		System.out.println(caseProblem.stairs(5));
+		int floors = 6;
+		StairCaseProblem caseProblem = new StairCaseProblem();
+		System.out.println(caseProblem.climbStairs(floors));
 	}
 }

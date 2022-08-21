@@ -1,7 +1,9 @@
 package com.avinash.array;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -9,16 +11,20 @@ import java.util.Map;
 
 public class FindSum {
 	public static void main(String[] args) {
-		int[] numbers = { 2, 7, 11, 15 };
-		int target = 9;
-		System.out.println(Arrays.toString(numbers));
-		System.out.println(Arrays.toString(findTwoSum(numbers, target)));
-		Arrays.sort(numbers);
-		System.out.println(Arrays.toString(numbers));
-		System.out.println(Arrays.toString(findTwoSumSortedArray(numbers, target)));
-
-		System.out.println(threeSum(new int[] { -1, 0, 1, 2, -1, -4 }, 0));
-		System.out.println(fourSum(new int[] {1, 0, -1, 0, -2, 2} , 0));
+//		int[] numbers = { 2, 7, 11, 15 };
+//		int target = 9;
+//		System.out.println(Arrays.toString(numbers));
+//		System.out.println(Arrays.toString(findTwoSum(numbers, target)));
+//		Arrays.sort(numbers);
+//		System.out.println(Arrays.toString(numbers));
+//		System.out.println(Arrays.toString(findTwoSumSortedArray(numbers, target)));
+//
+//		System.out.println(threeSum(new int[] { -1, 0, 1, 2, -1, -4 }, 0));
+//		System.out.println(fourSum(new int[] {1, 0, -1, 0, -2, 2} , 0));
+//		
+		System.out.println(threeSum(new int[] {0,0,0,0}, 0));
+		
+		System.out.println(threeSum(new int[] {1,-1,-1,0}, 0));
 		
 	}
 
@@ -81,10 +87,28 @@ public class FindSum {
 	}
 
 	public static int threeSumClosest(int[] numbers, int target) {
-		int min = Integer.MAX_VALUE;
-		int result = 0;
+		int minDiff = Integer.MAX_VALUE;
+		Arrays.sort(numbers);
 		
-		return result;
+		for (int first = 0 ; first < numbers.length; first++) {
+			int remaining = target - numbers[first];
+			int low = first + 1;
+			int high = numbers.length - 1;
+			
+			while(low < high) {
+				int currentSum = numbers[low] + numbers[high];
+				if (currentSum == remaining) {
+					minDiff = 0;
+					while (low < high && numbers[low] == numbers[low + 1]) low ++;
+					while (low < high && numbers[high] == numbers[high - 1]) high--;
+				} else if (currentSum < remaining) {
+					low ++;
+//					if (target - (numbers[first] + numbers[low] + numbers))
+				}
+			}
+		}
+		
+		return -1;
 	}
 	
 	
@@ -112,6 +136,7 @@ public class FindSum {
 				}
 			}
 		}
+		Collections.sor
 		return result;
 	}
 }

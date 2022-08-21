@@ -20,7 +20,7 @@ public class HeapSort {
 	public static void maxheap(int[] a, int i) {
 		left = 2 * i;
 		right = 2 * i + 1;
-		System.out.println(i + " " + left + " " + right);
+//		System.out.println(i + " " + left + " " + right);
 		if (left <= n && a[left] > a[i]) {
 			largest = left;
 		} else {

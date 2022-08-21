@@ -1,8 +1,5 @@
 package com.avinash.dynamic;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class KnapScackProble1 {
 	public static void main(String[] args) {
 		int numOfItems = 4;
@@ -15,6 +12,7 @@ public class KnapScackProble1 {
 
 	public static void solve(int[] weights, int[] values, int capacity, int numberOfItems) {
 		int[][] dpTable = new int[numberOfItems + 1][capacity + 1];
+		
 		for (int valIndex = 1; valIndex <= numberOfItems; valIndex++) {
 			for (int weight = 1; weight <= capacity; weight++) {
 				if (weights[valIndex] <= weight) {

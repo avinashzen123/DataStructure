@@ -14,41 +14,38 @@ import java.util.stream.IntStream;
  *
  */
 public class LongestPallindrome {
-	public static String longestPallindrome(String str) {
-		int n = str.length();
+	public static String longestPallindrome(String s) {
+		int n = s.length();
 		boolean table[][] = new boolean[n][n];
 		int maxLenth = 1;
 		int start = 0;
 		IntStream.range(0, n).forEach(i -> table[i][i] = true);
 		for (int i = 0; i < n - 1; i++) {
-			if (str.charAt(i) == str.charAt(i + 1)) {
+			if (s.charAt(i) == s.charAt(i + 1)) {
 				table[i][i + 1] = true;
 				start = i;
 				maxLenth = 2;
 			}
 		}
-		for (int k = 3; k <= n; k++) {
-			for (int i = 0; i < n - k - 1; i++) {
-				int j = i + k - 1;
-//				System.out.println(i + " " + j + " " + k + " " + table[i + 1][j - 1] + " " + str.charAt(i) + " "
-//						+ str.charAt(j) + " i + 1, j -1  " + str.charAt(i + 1) + " " + str.charAt(j - 1));
-				if (table[i + 1][j - 1] && str.charAt(i) == str.charAt(j)) {
-//					printTable(table, str);
-					table[i][j] = true;
-					if (k > maxLenth) {
-						start = i;
-						maxLenth = k;
+		for (int length = 3; length <= n; length++) {
+			for (int row = 0; row < n - length + 1; row++) {
+				int column =	 row + length - 1;
+				if (table[row + 1][column - 1] && s.charAt(row) == s.charAt(column)) {
+					table[row][column] = true;
+					if (length > maxLenth) {
+						start = row;
+						maxLenth = length;
 					}
 				}
 			}
 		}
 		System.out.println("Max length " + maxLenth + " " + start);
-		return str.substring(start + 1, start + maxLenth - 1);
+		return s.substring(start, start + maxLenth);
 	}
 
 	public static void printTable(boolean[][] x, String str) {
 		for (boolean[] y : x) {
-			for (boolean z : y) {
+			for (boolean z : y) {	
 				System.out.print(z + " ,  ");
 			}
 			System.out.println();
@@ -60,5 +57,11 @@ public class LongestPallindrome {
 
 		String str = "forgeeksskeegfor";
 		System.out.println("Length is: " + longestPallindrome(str));
+		System.out.println("Length is: " + longestPallindrome("babad"));
+
+		System.out.println("Length is: " + longestPallindrome("cbbd"));
+		
+		System.out.println("Length is: " + longestPallindrome("ccc"));
+		
 	}
 }

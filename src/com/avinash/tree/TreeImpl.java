@@ -1,8 +1,12 @@
 package com.avinash.tree;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class TreeNode {
     Integer data;
     TreeNode left, right;
+    int level;
 
     public TreeNode(Integer data) {
         this.data = data;
@@ -50,6 +54,35 @@ public class TreeImpl {
         System.out.print(node.data + "-");
     }
     
+    public void levelOrder() {
+    	System.out.println();
+    	TreeNode currentNode = this.head;
+    	currentNode.level = 0;
+    	Queue<TreeNode> queue = new LinkedList<>();
+    	queue.add(currentNode);
+    	while(!queue.isEmpty()) {
+    		TreeNode polledNode = queue.poll();
+    		System.out.print(polledNode.data + "->");
+    		if (polledNode.left != null) queue.add(polledNode.left);
+    		if (polledNode.right != null) queue.add(polledNode.right);
+    	}
+    }
+    private Integer totalLevel = 0;
+    public void totalLevels() {
+    	totalLevels(head, 0);
+    	System.out.println("\nTotal Levels = " + totalLevel);
+    }
+    
+    public void totalLevels(TreeNode node, Integer level) {
+    	totalLevel = level;
+    	if (node.left != null) {
+    		totalLevels(node.left, level + 1);
+    	}
+    	if (node.right != null) {
+    		totalLevels(node.right, level + 1);
+    	}
+    }
+    
     public static void main(String[] args) {
         TreeImpl tree = new TreeImpl();
         tree.head = new TreeNode(1);
@@ -64,5 +97,7 @@ public class TreeImpl {
         tree.inOrder();
         System.out.println();
         tree.postOrder();
+        tree.levelOrder();
+        tree.totalLevels();
     }
 }

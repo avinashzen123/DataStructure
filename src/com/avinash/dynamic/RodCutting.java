@@ -1,5 +1,8 @@
 package com.avinash.dynamic;
 
+import java.util.Arrays;
+import java.util.Collections;
+
 public class RodCutting {
 	private int rodLength;
 	private int[][] dpTable;
@@ -44,5 +47,6 @@ public class RodCutting {
 		RodCutting cutting = new RodCutting(n, prices);
 		cutting.solve();
 		cutting.show();
+		
 	}
 }
