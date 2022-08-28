@@ -1,4 +1,4 @@
-package com.avinash.interview;
+package com.avinash.dynamic;
 
 import java.util.Arrays;
 

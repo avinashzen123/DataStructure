@@ -13,6 +13,18 @@ public class MedianOfTwoSortedArray {
 		}
 	}
 
+	/**
+	 * 
+	 * 
+	 * @param a
+	 * @param b
+	 * @param k
+	 * @param aStart
+	 * @param aEnd
+	 * @param bStart
+	 * @param bEnd
+	 * @return
+	 */
 	private static double findKth(int[] a, int[] b, int k, int aStart, int aEnd, int bStart, int bEnd) {
 		int aLen = aEnd - aStart + 1;
 		int bLen = bEnd - bStart + 1;
@@ -24,8 +36,9 @@ public class MedianOfTwoSortedArray {
 		if (k == 0)
 			return a[aStart] < b[bStart] ? a[aStart] : b[bStart];
 
-		int aMid = aLen * k / (aLen + bLen);
-		int bMid = k - aMid - 1;
+//		int aMid = aLen * k / (aLen + bLen);
+		int aMid = (aStart + aEnd)/2;
+		int bMid = k - aMid - 1 < 0 ? 0: k - aMid - 1;
 
 		aMid = aMid + aStart;
 		bMid = bMid + bStart;
@@ -43,10 +56,18 @@ public class MedianOfTwoSortedArray {
 		return findKth(a, b, k, aStart, aEnd, bStart, bEnd);
 	}
 
+	/**
+	 * https://youtu.be/q6IEA26hvXc
+	 * =
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		int[] a = { 1, 2, 11, 13 };
 		int[] b = { 3, 4, 6, 8, 12 };
-		System.out.println(findMedianSortedArray(a, b));
+		
+//		System.out.println(findMedianSortedArray(a, b));
+		System.out.println(findKth(b, a, 4, 0, b.length, 0, a.length));
+		System.out.println(findKth(a, b, 4, 0, a.length, 0, b.length));
 	}
 
 }

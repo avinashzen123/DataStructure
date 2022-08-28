@@ -1,4 +1,4 @@
-package com.avinash.interview;
+package com.avinash.array;
 
 public class SearchIn2dSortedMatrix {
 

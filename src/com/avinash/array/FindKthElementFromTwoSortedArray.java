@@ -2,6 +2,17 @@ package com.avinash.array;
 
 public class FindKthElementFromTwoSortedArray {
 
+	/**
+	 * 
+	 * @param arrayA
+	 * @param arrayB
+	 * @param aStart
+	 * @param aEnd
+	 * @param bStart
+	 * @param bEnd
+	 * @param k
+	 * @return
+	 */
 	public static int findKthElement(int[] arrayA, int[] arrayB, int aStart, int aEnd, int bStart, int bEnd, int k) {
 		int aLen = aEnd - aStart + 1;
 		int bLen = bEnd - bStart + 1;
