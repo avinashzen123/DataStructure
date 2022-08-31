@@ -3,7 +3,6 @@ package com.avinash.array;
 public class FindKthElementFromTwoSortedArray {
 
 	/**
-	 * 
 	 * @param arrayA
 	 * @param arrayB
 	 * @param aStart

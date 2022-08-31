@@ -1,5 +1,6 @@
 package com.avinash.array;
 
+// Longest Repeating Character Replacement
 public class LongestRepeatingCharacterReplacement {
 	public static int repetingCharacterReplacement(String str, int k) {
 		int[] frequency = new int[26];
@@ -21,5 +22,8 @@ public class LongestRepeatingCharacterReplacement {
 	
 	public static void main(String[] args) {
 		System.out.println(repetingCharacterReplacement("ABABBA", 2));
+		System.out.println(repetingCharacterReplacement("AABABBA", 1));
+		System.out.println(repetingCharacterReplacement("ABA", 2));
+		System.out.println(repetingCharacterReplacement("ABAB", 2));
 	}
 }

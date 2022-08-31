@@ -1,34 +1,34 @@
 package com.avinash.interview;
 
-import java.util.Map;
-
 public class InterleavingString {
 
-	public static boolean isInterleavingString (String s1, String s2, String s3) {
-		if (s1.length() + s2.length() != s3.length()) 
-			return false;
-		
-		
-		return true;
-	}
-	
-	private static boolean dfs(String s1, String s2, String s3, Map<String, Boolean> table, int i, int j) {
-		if (i == s1.length() && j == s2.length()) 
-			return true;
-		if (table.containsKey("" + i + "," + j)) 
-			return table.get("" + i + "," + j);
-		
-		if (i < s1.length() && s1.charAt(i) == s3.charAt(i + j) && dfs(s1, s2, s3, table, i + 1, j)) {
-			return true;
-		}
-		if (j < s2.length() && s2.charAt(i) == s3.charAt(i + j) && dfs(s1, s2, s3, table, i, j+1)) {
-			return true;
-		}
-//		table["" + i + "," + j] = false;
-		return false;
-	}
-	
+	 // https://www.youtube.com/watch?v=3Rw3p9LrgvE
+    public static boolean isInterleave(String str1, String str2, String str3) {
+        if (str1.length() + str2.length() != str3.length()) {
+            return false;
+        }
+        boolean[][] dpTable = new boolean[str1.length() + 1][str2.length() + 1];
+        dpTable[str1.length()][str2.length()] = true;
+        for (int row = str1.length(); row >= 0; row--) {
+            for (int col = str2.length(); col >= 0; col--) {
+                if (row < str1.length() && str1.charAt(row) == str3.charAt(row + col) && dpTable[row + 1][col]) {
+                    dpTable[row][col] = true;
+                }
+                if (col < str2.length() && str2.charAt(col) == str3.charAt(row + col) && dpTable[row][col+1]) {
+                    dpTable[row][col] = true;
+                }
+            }
+        }
+        return dpTable[0][0];
+    }
+
+    
 	public static void main(String[] args) {
-//		isInterLeav("aabcc", "dbbca", "aadbbcbcac")
+		String s1 = "aabcc", s2 = "dbbca", s3 = "aadbbcbcac";
+        System.out.println(isInterleave(s1, s2, s3));
+        s1 = "aabcc"; 
+        s2 = "dbbca";
+        s3 = "aadbbbaccc";
+        System.out.println(isInterleave(s1, s2, s3));
 	}
 }
