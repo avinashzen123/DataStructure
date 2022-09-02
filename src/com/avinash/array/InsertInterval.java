@@ -1,8 +1,7 @@
 package com.avinash.array;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
+import java.util.Arrays;
 import java.util.List;
 
 import lombok.Data;
@@ -14,25 +13,30 @@ class Node {
 }
 
 public class InsertInterval {
-	
-	public static void main(String[] args) {
-		List<Interval> intervals = new ArrayList<>();
-		intervals.add(new Interval(1, 2));
-		intervals.add(new Interval(3, 5));
-		intervals.add(new Interval(6, 7));
-		intervals.add(new Interval(8, 10));
-		intervals.add(new Interval(12, 16));
-		Collections.sort(intervals, (o1, o2) -> o1.getStart().compareTo(o2.getEnd()));
-		Interval newInterval = new Interval(4, 9);
-		
-		Iterator<Interval> iterator = intervals.iterator();
-		List<Interval> result = new ArrayList<>();
-		
-		while (iterator.hasNext()) {
-			Interval currentInterval = iterator.next();
-			if (currentInterval.getEnd() < newInterval.getStart()) {
-				result.add(currentInterval);
-			}
+
+	public static List<int[]> insert(int[][] intervals, int[] newInterval) {
+		List<int[]> mergedInterval = new ArrayList<>();
+		long startTime = System.nanoTime();
+		int i = 0;
+		while (i < intervals.length && intervals[i][1] < newInterval[0]) {
+			mergedInterval.add(intervals[i++]);
 		}
+		newInterval[0] = intervals[i][0];
+		while (i < intervals.length && intervals[i][0] <= newInterval[1]) {
+			newInterval[1] = Math.max(intervals[i++][1], newInterval[1]);
+		}
+		mergedInterval.add(newInterval);
+		while (i < intervals.length) {
+			mergedInterval.add(intervals[i++]);
+		}
+		System.out.println(System.nanoTime() - startTime);
+		return mergedInterval;
+	}
+
+	public static void main(String[] args) {
+		List<int[]> result = insert(new int[][] { { 1, 2 }, { 3, 5 }, { 6, 7 }, { 8, 10 }, { 12, 16 } },
+				new int[] { 4, 8 });
+		result.stream().map(Arrays::toString).forEach(System.out::println);
+
 	}
 }

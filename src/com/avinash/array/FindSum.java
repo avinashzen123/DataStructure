@@ -23,6 +23,9 @@ public class FindSum {
 		System.out.println(threeSum(new int[] { 0, 0, 0, 0 }, 0));
 
 		System.out.println(threeSum(new int[] { 1, -1, -1, 0 }, 0));
+		
+		List<Integer> arr = new ArrayList<>();
+	
 
 	}
 

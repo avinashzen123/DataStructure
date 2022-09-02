@@ -2,6 +2,7 @@ package com.avinash.interview;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -33,5 +34,6 @@ public class GroupAnagrams {
 		String[] strs = {"eat","tea","tan","ate","nat","bat"};
 		strs = new String[]{"ac","c"};
 		System.out.println(groupAnagrams(strs));
+		
 	}
 }
