@@ -14,7 +14,7 @@ class Node1 {
 	}
 }
 
-public class Stack {
+public class StackImpl {
 	private Node1 head;
 
 	public void push(Integer data) {
@@ -34,7 +34,7 @@ public class Stack {
 	}
 
 	public static void main(String[] args) {
-		Stack stack = new Stack();
+		StackImpl stack = new StackImpl();
 		stack.push(10);
 		stack.push(20);
 		stack.push(30);
