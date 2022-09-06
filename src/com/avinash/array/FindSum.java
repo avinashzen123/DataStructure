@@ -11,21 +11,21 @@ public class FindSum {
 	public static void main(String[] args) {
 		int[] numbers = { 2, 7, 11, 15 };
 		int target = 9;
-		System.out.println(Arrays.toString(numbers));
-		System.out.println(Arrays.toString(findTwoSum(numbers, target)));
-		Arrays.sort(numbers);
-		System.out.println(Arrays.toString(numbers));
-		System.out.println(Arrays.toString(findTwoSumSortedArray(numbers, target)));
-
-		System.out.println(threeSum(new int[] { -1, 0, 1, 2, -1, -4 }, 0));
-		System.out.println(fourSum(new int[] { 1, 0, -1, 0, -2, 2 }, 0));
-
-		System.out.println(threeSum(new int[] { 0, 0, 0, 0 }, 0));
-
-		System.out.println(threeSum(new int[] { 1, -1, -1, 0 }, 0));
+//		System.out.println(Arrays.toString(numbers));
+//		System.out.println(Arrays.toString(findTwoSum(numbers, target)));
+//		Arrays.sort(numbers);
+//		System.out.println(Arrays.toString(numbers));
+//		System.out.println(Arrays.toString(findTwoSumSortedArray(numbers, target)));
+//
+//		System.out.println(threeSum(new int[] { -1, 0, 1, 2, -1, -4 }, 0));
+//		System.out.println(fourSum(new int[] { 1, 0, -1, 0, -2, 2 }, 0));
+//
+//		System.out.println(threeSum(new int[] { 0, 0, 0, 0 }, 0));
+//
+//		System.out.println(threeSum(new int[] { 1, -1, -1, 0 }, 0));
 		
-		List<Integer> arr = new ArrayList<>();
-	
+		System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
+		System.out.println(threeSum(new int[] {1,-1, -1, 0}));
 
 	}
 
@@ -135,6 +135,60 @@ public class FindSum {
 		return result;
 	}
 
+	public static List<List<Integer>> threeSum(int[] nums) {
+//        List<List<Integer>> result = new ArrayList<>();
+//        Arrays.sort(nums);
+//        System.out.println(Arrays.toString(nums));
+//        for (int left = 0; left < nums.length - 2; left++) {
+//            int mid = left + 1;
+//            int right = nums.length - 1;
+//            int remainingSum = -nums[left];
+//            while(mid < right) {
+//                int currSum = nums[mid] + nums[right];
+//                if (currSum == remainingSum) {
+//                    result.add(List.of(nums[left], nums[mid], nums[right]));
+//                    while (mid < nums.length - 1 && nums[mid] == nums[mid + 1]) mid++;
+//                    while (right > 0 && nums[right] == nums[right - 1]) right--;
+////                    while(left < nums.length - 2 && nums[left] == nums[left + 1]) left++;
+//                    mid++;
+//                    right--;
+//                } else if (currSum < remainingSum ) {
+//                	right--;
+//                } else {
+//                	mid++;
+//                }
+//            }
+//            
+//        }
+//        return result;
+		
+		int target = 0;
+        Arrays.sort(nums);
+        List<List<Integer>> result = new ArrayList<>();
+        for (int first = 0; first < nums.length - 2; first++) {
+            if (first == 0 || (first > 0 && nums[first] != nums[first - 1])) {
+                int need = target - nums[first] ;
+                int low = first + 1;
+                int end = nums.length - 1;
+                while (low < end) {
+                    int remaining = nums[low] + nums[end];
+                    if (remaining  == need) {
+                        result.add(List.of(nums[first], nums[low], nums[end]));
+                        while(low < end && nums[low] == nums[low + 1]) low++;
+                        while(low < end && nums[end] == nums[end-1]) end--;
+                        low ++;
+                        end--;
+                    } else if (remaining > need) {
+                        end --;
+                    } else {
+                        low ++;
+                    }
+                }
+            }
+        }
+        return result;
+    }
+	
 	public static int threeSumClosest(int[] numbers, int target) {
 		int minDiff = Integer.MAX_VALUE;
 		Arrays.sort(numbers);
@@ -155,7 +209,7 @@ public class FindSum {
 				} else if (currentSum < remaining) {
 					low++;
 //					if (target - (numbers[first] + numbers[low] + numbers))
-				}
+				}	
 			}
 		}
 

@@ -22,15 +22,15 @@ public class CoinChange {
 	}
 
 	public static void main(String[] args) {
-//		int[] coins = new int[] {1,3,4,5};
-//		int amount = 11;
+		int[] coins = new int[] {1,3,4,5};
+		int amount = 11;
 		
 //		int[] coins = new int[] {3};
 //		int amount = 2;
-//		System.out.println(coinChange(coins, amount));
+		System.out.println(coinChange(coins, amount));
 		
-		int[] coins1 = new int[] {186,419,83,408};
-		int amount1 = 6249;
-		System.out.println(coinChange(coins1, amount1));
+//		int[] coins1 = new int[] {186,419,83,408};
+//		int amount1 = 6249;
+//		System.out.println(coinChange(coins1, amount1));
 	}
 }

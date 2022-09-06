@@ -1,6 +1,8 @@
 package com.avinash.array;
 
 // Longest Repeating Character Replacement
+// https://www.youtube.com/watch?v=gqXU1UyA8pk&t=716s
+//https://leetcode.com/problems/longest-repeating-character-replacement/
 public class LongestRepeatingCharacterReplacement {
 	public static int repetingCharacterReplacement(String str, int k) {
 		int[] frequency = new int[26];

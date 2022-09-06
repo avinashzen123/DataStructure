@@ -3,7 +3,37 @@ package com.avinash.dynamic;
 import java.util.Deque;
 
 
-public class StokBySellKthTransactions {
+public class StockBySellKthTransactions {
+	
+	
+	public static int maxProfitOneTransaction(int[] prices) {
+        int maxProfit = 0;
+        int low = 0, high = 1;
+        while (low < high && high < prices.length) {
+            if (prices[low] < prices[high]) {
+                maxProfit = Math.max(maxProfit, prices[high] - prices[low]);
+            } else {
+                low = high;
+            }
+            high++;
+        }
+//        System.out.println(maxProfitOneTransaction(new int[]{7,1,5,3,6,4}));
+        return maxProfit;
+    }
+	
+	public int maxProfit(int[] prices) {
+        int totalProfit = 0;
+        for (int i = 0; i < prices.length - 1; i++) {
+            if (prices[i] < prices[i +1]) {
+                int j = i + 1;
+                while(j + 1 < prices.length && prices[j] < prices[j+1]) j++;
+                totalProfit = totalProfit + (prices[j] - prices[i]);
+                i = j ;
+            }
+        }
+        return totalProfit;
+    }
+	
 	
 	public int maxProfitLinearSpace(int k, int[] prices) {
         if (k == 0 || prices.length == 0) {
@@ -125,7 +155,7 @@ public class StokBySellKthTransactions {
     }
 
     public static void main(String args[]) {
-    	StokBySellKthTransactions sbt = new StokBySellKthTransactions();
+    	StockBySellKthTransactions sbt = new StockBySellKthTransactions();
         int prices[] = {2, 5, 7, 1, 4, 3, 1, 3};
 
         System.out.println("Max profit fast solution " + sbt.maxProfit(prices, 3));
