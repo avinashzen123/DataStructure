@@ -43,10 +43,30 @@ public class BitMasking {
             System.out.println(s);
         }
     }
+    
+    public static int findMajorityElement(int[] nums) {
+        int size = nums.length;
+        int majority = 0;
+        for (int i = 0; i < 32; i ++) {
+            int mask = 1 << i;
+            int bitCount = 0;
+            for (int num: nums) {
+                if ((num & mask) > 0) {
+                    bitCount++;
+                }
+            }
+            if (bitCount > size/2) {
+                majority |= mask;
+            }
+        }
+        return majority;
+    }
+
 
     public static void main(String[] args) {
         printPowerSet(new int[] {1,2,3});
         System.out.println(allSubsets("abc"));
         // System.out.println(Integer.toString(2, 2));
+        System.out.println(findMajorityElement(new int[] {2,2,1,1,1,2,2}));
     }
 }
