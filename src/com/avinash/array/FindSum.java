@@ -24,8 +24,10 @@ public class FindSum {
 //
 //		System.out.println(threeSum(new int[] { 1, -1, -1, 0 }, 0));
 		
-		System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
-		System.out.println(threeSum(new int[] {1,-1, -1, 0}));
+//		System.out.println(threeSum(new int[] {-1,0,1,2,-1,-4}));
+//		System.out.println(threeSum(new int[] {1,-1, -1, 0}));
+		
+		System.out.println(threeSumClosest(new int[]{-1,2,1,-4}, 1));
 
 	}
 
@@ -189,31 +191,28 @@ public class FindSum {
         return result;
     }
 	
-	public static int threeSumClosest(int[] numbers, int target) {
-		int minDiff = Integer.MAX_VALUE;
-		Arrays.sort(numbers);
-
-		for (int first = 0; first < numbers.length; first++) {
-			int remaining = target - numbers[first];
-			int low = first + 1;
-			int high = numbers.length - 1;
-
-			while (low < high) {
-				int currentSum = numbers[low] + numbers[high];
-				if (currentSum == remaining) {
-					minDiff = 0;
-					while (low < high && numbers[low] == numbers[low + 1])
-						low++;
-					while (low < high && numbers[high] == numbers[high - 1])
-						high--;
-				} else if (currentSum < remaining) {
-					low++;
-//					if (target - (numbers[first] + numbers[low] + numbers))
-				}	
-			}
-		}
-
-		return -1;
+	public static int threeSumClosest(int[] nums, int target) {
+		Arrays.sort(nums);
+        int closest = Integer.MAX_VALUE;
+        for (int start = 0; start < nums.length-2; start++) {
+            int rem = target - nums[start];
+            int low = start + 1;
+            int high = nums.length - 1;
+            while (low < high) {
+                int curr = nums[low] + nums[high];
+                if (Math.abs(target - closest) > Math.abs(target - (nums[start] + nums[low] + nums[high]))) {
+                    closest = Math.min(closest, Math.abs(nums[start] + nums[low] + nums[high]));   
+                }
+                if (curr > rem) low ++;
+                else if (curr < rem) high --;
+                else {
+                    low ++;
+                    high --;
+                }
+                
+            }
+        }
+        return closest;
 	}
 
 	/**
