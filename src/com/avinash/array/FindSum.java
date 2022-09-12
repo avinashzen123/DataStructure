@@ -190,7 +190,7 @@ public class FindSum {
         }
         return result;
     }
-	
+	// https://www.geeksforgeeks.org/find-a-triplet-in-an-array-whose-sum-is-closest-to-a-given-number/
 	public static int threeSumClosest(int[] nums, int target) {
 		Arrays.sort(nums);
         int closest = Integer.MAX_VALUE;

@@ -26,6 +26,7 @@ public class FindKthElementFromTwoSortedArray {
 				+ bStart + " BEnd :" + bEnd + " bMid : " + bMid);
 		
 		if (arrayA[aMid] > arrayB[bMid]) {
+			// 
 			k = k - (bMid - bStart + 1);
 			aEnd = aMid;
 			bStart = bMid + 1;

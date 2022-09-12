@@ -1,4 +1,4 @@
-package com.avinash.interview;
+package com.avinash.dynamic;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -6,6 +6,28 @@ import java.util.List;
 
 public class BestTimeToBuySellStock {
 
+	/**
+	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+	 * 
+	 * You are given an array prices where prices[i] is the price of a given stock
+	 * on the ith day.
+	 * 
+	 * You want to maximize your profit by choosing a single day to buy one stock
+	 * and choosing a different day in the future to sell that stock.
+	 * 
+	 * Return the maximum profit you can achieve from this transaction. If you
+	 * cannot achieve any profit, return 0.
+	 * 
+	 * Input: prices = [7,1,5,3,6,4] Output: 5 Explanation: Buy on day 2 (price = 1)
+	 * and sell on day 5 (price = 6), profit = 6-1 = 5. Note that buying on day 2
+	 * and selling on day 1 is not allowed because you must buy before you sell
+	 * 
+	 * Input: prices = [7,6,4,3,1] Output: 0 Explanation: In this case, no
+	 * transactions are done and the max profit = 0.
+	 * 
+	 * @param prices
+	 * @return
+	 */
 	public static int maxProfilt(int[] prices) {
 		int left = 0;
 		int maxProfit = 0;
@@ -19,8 +41,9 @@ public class BestTimeToBuySellStock {
 		return maxProfit;
 	}
 
-	// https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 	/**
+	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+	 * 
 	 * You are given an integer array prices where prices[i] is the price of a given
 	 * stock on the ith day.
 	 * 
@@ -29,6 +52,15 @@ public class BestTimeToBuySellStock {
 	 * immediately sell it on the same day.
 	 * 
 	 * Find and return the maximum profit you can achieve.
+	 * 
+	 * Input: prices = [7,1,5,3,6,4] Output: 7 Explanation: Buy on day 2 (price = 1)
+	 * and sell on day 3 (price = 5), profit = 5-1 = 4. Then buy on day 4 (price =
+	 * 3) and sell on day 5 (price = 6), profit = 6-3 = 3. Total profit is 4 + 3 =
+	 * 7.
+	 * 
+	 * Input: prices = [1,2,3,4,5] Output: 4 Explanation: Buy on day 1 (price = 1)
+	 * and sell on day 5 (price = 5), profit = 5-1 = 4. Total profit is 4.
+	 * 
 	 * 
 	 * @param prices
 	 * @return
@@ -102,27 +134,29 @@ public class BestTimeToBuySellStock {
 	 * @return
 	 */
 	public static int maxProfit4(int[] prices, int transactions) {
-		int [][] dp = new int[transactions+1][prices.length];
+		int[][] dp = new int[transactions + 1][prices.length];
 		for (int transaction = 1; transaction < transactions + 1; transaction++) {
 			for (int priceIndex = 1; priceIndex < prices.length; priceIndex++) {
 				int maxProfit = 0;
 				for (int currPriceIndex = 0; currPriceIndex < priceIndex; currPriceIndex++) {
-					maxProfit = Math.max(maxProfit, prices[priceIndex] - prices[currPriceIndex] + dp[transaction - 1][currPriceIndex]);
+					maxProfit = Math.max(maxProfit,
+							prices[priceIndex] - prices[currPriceIndex] + dp[transaction - 1][currPriceIndex]);
 				}
-				dp[transaction][priceIndex] = Math.max(dp[transaction][priceIndex -1], maxProfit);
+				dp[transaction][priceIndex] = Math.max(dp[transaction][priceIndex - 1], maxProfit);
 			}
 		}
 		return dp[transactions][prices.length - 1];
 	}
-	
+
 	public static int maxProfit4_1(int[] prices, int transactions) {
-		if (prices.length < 2) return 0;
-		int [][] dp = new int[transactions+1][prices.length];
+		if (prices.length < 2)
+			return 0;
+		int[][] dp = new int[transactions + 1][prices.length];
 		for (int transaction = 1; transaction < transactions + 1; transaction++) {
 			int maxDiff = -prices[0];
 			for (int priceIndex = 1; priceIndex < prices.length; priceIndex++) {
-				dp[transaction][priceIndex] = Math.max(prices[priceIndex] + maxDiff, dp[transaction][priceIndex-1]);
-				maxDiff = Math.max(maxDiff, dp[transaction-1][priceIndex] - prices[priceIndex]);
+				dp[transaction][priceIndex] = Math.max(prices[priceIndex] + maxDiff, dp[transaction][priceIndex - 1]);
+				maxDiff = Math.max(maxDiff, dp[transaction - 1][priceIndex] - prices[priceIndex]);
 			}
 		}
 		return dp[transactions][prices.length - 1];
@@ -140,8 +174,8 @@ public class BestTimeToBuySellStock {
 		// int[] prices1 = new int[] {1,2,4,2,5,7,2,4,9,0};
 //		int[] prices1 = new int[] { 6, 1, 3, 2, 4, 7 };
 //		System.out.println(maxProfit3(prices1));
-		
-		System.out.println(maxProfit4_1(new int[] {3,2,6,5,0,3}, 2));
+
+		System.out.println(maxProfit4_1(new int[] { 3, 2, 6, 5, 0, 3 }, 2));
 
 	}
 }
