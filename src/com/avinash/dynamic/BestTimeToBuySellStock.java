@@ -53,13 +53,16 @@ public class BestTimeToBuySellStock {
 	 * 
 	 * Find and return the maximum profit you can achieve.
 	 * 
-	 * Input: prices = [7,1,5,3,6,4] Output: 7 Explanation: Buy on day 2 (price = 1)
-	 * and sell on day 3 (price = 5), profit = 5-1 = 4. Then buy on day 4 (price =
-	 * 3) and sell on day 5 (price = 6), profit = 6-3 = 3. Total profit is 4 + 3 =
-	 * 7.
+	 * Input: prices = [7,1,5,3,6,4] Output: 7
 	 * 
-	 * Input: prices = [1,2,3,4,5] Output: 4 Explanation: Buy on day 1 (price = 1)
-	 * and sell on day 5 (price = 5), profit = 5-1 = 4. Total profit is 4.
+	 * Explanation: Buy on day 2 (price = 1) and sell on day 3 (price = 5), profit =
+	 * 5-1 = 4. Then buy on day 4 (price = 3) and sell on day 5 (price = 6), profit
+	 * = 6-3 = 3. Total profit is 4 + 3 = 7.
+	 * 
+	 * Input: prices = [1,2,3,4,5] Output: 4
+	 * 
+	 * Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit =
+	 * 5-1 = 4. Total profit is 4.
 	 * 
 	 * 
 	 * @param prices
@@ -90,6 +93,19 @@ public class BestTimeToBuySellStock {
 	 * 
 	 * Note: You may not engage in multiple transactions simultaneously (i.e., you
 	 * must sell the stock before you buy again).
+	 * 
+	 * Input: prices = [3,3,5,0,0,3,1,4] Output: 6
+	 * 
+	 * Explanation: Buy on day 4 (price = 0) and sell on day 6 (price = 3), profit =
+	 * 3-0 = 3. Then buy on day 7 (price = 1) and sell on day 8 (price = 4), profit
+	 * = 4-1 = 3.
+	 * 
+	 * Input: prices = [1,2,3,4,5] Output: 4
+	 * 
+	 * Explanation: Buy on day 1 (price = 1) and sell on day 5 (price = 5), profit =
+	 * 5-1 = 4. Note that you cannot buy on day 1, buy on day 2 and sell them later,
+	 * as you are engaging multiple transactions at the same time. You must sell
+	 * before buying again.
 	 * 
 	 * 
 	 * @param prices
@@ -124,9 +140,11 @@ public class BestTimeToBuySellStock {
 	 * Note: You may not engage in multiple transactions simultaneously (i.e., you
 	 * must sell the stock before you buy again).
 	 * 
-	 * Input: k = 2, prices = [3,2,6,5,0,3] Output: 7 Explanation: Buy on day 2
-	 * (price = 2) and sell on day 3 (price = 6), profit = 6-2 = 4. Then buy on day
-	 * 5 (price = 0) and sell on day 6 (price = 3), profit = 3-0 = 3.
+	 * Input: k = 2, prices = [3,2,6,5,0,3] Output: 7
+	 * 
+	 * Explanation: Buy on day 2 (price = 2) and sell on day 3 (price = 6), profit =
+	 * 6-2 = 4. Then buy on day 5 (price = 0) and sell on day 6 (price = 3), profit
+	 * = 3-0 = 3.
 	 * 
 	 * 
 	 * @param prices
