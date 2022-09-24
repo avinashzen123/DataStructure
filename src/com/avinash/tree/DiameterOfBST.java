@@ -42,7 +42,7 @@ public class DiameterOfBST {
         root.left.right = new Node(4);
         root.left.right.right = new Node(5);
         root.left.right.right.right = new Node(6);
-        System.out.println(root);
+//        System.out.println(root);
         new DiameterOfBST().calculateDiamter(root);
     }
 }

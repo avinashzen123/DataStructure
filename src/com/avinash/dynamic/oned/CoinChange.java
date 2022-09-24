@@ -1,4 +1,4 @@
-package com.avinash.dynamic;
+package com.avinash.dynamic.oned;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -87,7 +87,9 @@ public class CoinChange {
 	
 	public static int combinationOfCoinChangeDP(int[] coins, int amount) {
 		int temp[][] = new int[coins.length + 1][amount + 1];
-		for (int i = 0; i <= coins.length; i++) temp[i][0] = 1;
+		for (int i = 0; i <= coins.length; i++) {
+			temp[i][0] = 1;
+		}
 		for (int i = 1; i <= coins.length; i++) {
 			for (int j = 1; j <= amount; j++) {
 				if (j < coins[i - 1]) {
@@ -97,6 +99,7 @@ public class CoinChange {
 				}
 			}
 		}
+		Arrays.stream(temp).map(Arrays::toString).forEach(System.out::println);
 		return temp[coins.length][amount];
 	}
 	
@@ -114,7 +117,7 @@ public class CoinChange {
 		
 		System.out.println(combinationOfCoinChangeDP(new int[] {2}, 3));
 		
-//		System.out.println(combinationOfCoinChangeDP(new int[] {1,2,5}, 5));
+		System.out.println(combinationOfCoinChangeDP(new int[] {1,2,5}, 5));
 //		
 //		System.out.println(combinationOfCoinChangeDP(new int[] {3,5,7,8,9,10,11}, 500));
 	}

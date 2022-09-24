@@ -1,5 +1,6 @@
 package com.avinash.dynamic;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 public class LongestIncreasingSubsequence {
@@ -22,7 +23,29 @@ public class LongestIncreasingSubsequence {
 			.max().getAsInt() + 1;
 	}
 	
+	public static int lengthOfLIS(int[] nums) {
+        //O(n^2)
+        if (nums.length == 1) return 1;
+
+        int[] LIS = new int[nums.length];
+        Arrays.fill(LIS, 1);
+        int maximumSoFar = 1;
+
+        for (int i = nums.length - 1; i >= 0; i--) {
+            for (int j = i + 1; j < nums.length; j++) {
+                if (nums[i] < nums[j]) {
+                    LIS[i] = Math.max(1 + LIS[j], LIS[i]);
+                }
+            }
+            maximumSoFar = Math.max(maximumSoFar, LIS[i]);
+        }
+        return maximumSoFar;
+    }
+
+	
 	public static void main(String[] args) {
 		System.out.println(longestIncreasingSubsequence(new int[] {2, 5, 8, 3, 4, 6}));
+		System.out.println(lengthOfLIS(new int[] {2, 5, 8, 3, 4, 6}));
+
 	}
 }

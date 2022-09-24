@@ -5,17 +5,17 @@ import java.util.Stack;
 import lombok.AllArgsConstructor;
 import lombok.ToString;
 
-@ToString
-@AllArgsConstructor
-class ListNode {
-	Integer val;
-	ListNode next;
-	public void setNext(ListNode node) {
-		this.next = node;
-	}
-}
 
-public class LinkedList {
+public class LinkedListMIddle {
+	@ToString
+	@AllArgsConstructor
+	static class ListNode {
+		Integer val;
+		ListNode next;
+		public void setNext(ListNode node) {
+			this.next = node;
+		}
+	}
 
 	public static void main(String[] args) {
 		ListNode head = new ListNode(1, null);

@@ -5,6 +5,7 @@ import java.util.Comparator;
 
 
 // https://leetcode.com/problems/matchsticks-to-square/
+// https://www.youtube.com/watch?v=hUe0cUKV-YY
 public class MatchStickToSquare {
     public static boolean makesquare(int[] matchsticks) {
         int length = Arrays.stream(matchsticks).sum();

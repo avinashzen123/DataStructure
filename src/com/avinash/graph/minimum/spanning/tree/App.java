@@ -1,4 +1,4 @@
-package com.avinash.minimum.spanning.tree;
+package com.avinash.graph.minimum.spanning.tree;
 
 import java.util.ArrayList;
 import java.util.List;

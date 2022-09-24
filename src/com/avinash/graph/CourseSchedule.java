@@ -9,9 +9,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
-import java.util.Stack;
-
-import lombok.Data;
 
 public class CourseSchedule {
 
@@ -72,52 +69,55 @@ public class CourseSchedule {
 	// https://leetcode.com/problems/course-schedule-ii/
 	public static int[] courseOrder2(int numCourses, int[][] prerequisites) {
 		Map<Integer, List<Integer>> adjList = new HashMap<>();
-		int[] indegree = new int[numCourses];
-		int[] topologicalOrder = new int[numCourses];
-
-		for (int i = 0; i < prerequisites.length; i++) {
-			int post = prerequisites[i][0];
-			int pre = prerequisites[i][1];
-			List<Integer> list = adjList.getOrDefault(pre, new ArrayList<>());
-			list.add(post);
-			adjList.put(i, list);
-			indegree[post]++;
-		}
+		int indegree[] = new int[numCourses];
 		Queue<Integer> queue = new LinkedList<>();
+		int courseOrder[] = new int[numCourses];
+		int count = 0;
+		
+		for (int i = 0; i < numCourses; i++) {
+			adjList.put(i, new ArrayList<>());
+		}
+		
+		for (int edge[] : prerequisites) {
+			int course = edge[0];
+			int coursePrereq = edge[1];
+			indegree[course]++;
+			adjList.get(coursePrereq).add(course);
+		}
 		for (int i = 0; i < numCourses; i++) {
 			if (indegree[i] == 0) {
 				queue.add(i);
 			}
 		}
-		int count = 0;
-		while (!queue.isEmpty()) {
-			int node = queue.poll();
-			topologicalOrder[count++] = node;
-			if (adjList.containsKey(node)) {
-				for (Integer neighbor : adjList.get(node)) {
-					indegree[neighbor]--;
-					if (indegree[neighbor] == 0) {
-						queue.add(neighbor);
+		while(!queue.isEmpty()) {
+			int course = queue.poll();
+			courseOrder[count++] = course;
+			if (adjList.containsKey(course)) {
+				for (int neighbour : adjList.get(course)) {
+					indegree[neighbour]--;
+					if (indegree[neighbour] == 0) {
+						queue.add(neighbour);
 					}
 				}
 			}
 		}
-		System.out.println(Arrays.toString(topologicalOrder));
-		// If count != number of vertices it means graphs is not directed acyclic graph
-		if (count == numCourses) {
-			return topologicalOrder;
-		}
-
-		return new int[0];
-
+		if (count == numCourses) return courseOrder;
+		return new int[] {};
+	}
+	
+	//https://leetcode.com/problems/course-schedule-iii/solution/
+	public static int course3() {
+		return -1;
 	}
 
 	public static void main(String[] args) {
 //		System.out.println(canFinish(2, new int[][] { { 1, 0 }, { 0, 1 } }));
 //		System.out.println(canFinish(2, new int[][] { { 1, 0 } }));
-		System.out.println(canFinish(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } }));
-		System.out.println(courseOrder2(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } }));
-		System.out.println(courseOrder2(4, new int[][] { { 1, 0 }, { 2, 0 }, { 3, 1 }, { 3, 2 } }));
+//		System.out.println(canFinish(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } }));
+		System.out.println(Arrays.toString(courseOrder2(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } })));
+		System.out.println(Arrays.toString(courseOrder2(4, new int[][] { { 1, 0 }, { 2, 0 }, { 3, 1 }, { 3, 2 } })));
+		System.out.println(Arrays.toString(courseOrder2(2, new int[][] { { 1, 0 }, { 0, 1 } })));
+		System.out.println(Arrays.toString(courseOrder2(2, new int[][] {{ 0, 1 } })));
 
 	}
 }
