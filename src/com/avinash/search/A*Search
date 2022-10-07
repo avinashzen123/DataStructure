@@ -1,0 +1,100 @@
+
+
+import heapq
+from platform import node
+from typing import List
+
+class Node:
+    def __init__(self, row, col, value) -> None:
+        self.row = row
+        self.col = col
+        self.value = value
+        self.distanceFromStart  = float('inf') #G score
+        self.estimatedDistToEnd = float('inf') #F score
+        self.cameFrom = None
+
+def aStarAlgorithm(startRow, startCol, endRow, endCol, graph):
+    nodes = initialzeNodes(graph)
+    startNode: Node = nodes[startRow][startCol]
+    endNode: Node = nodes[endRow][endCol]
+
+    startNode.distanceFromStart = 0
+    startNode.estimatedDistToEnd = calculateManhatanDistance(startNode, endNode)
+
+    nodesToVisit = []
+    heapq.heapify(nodesToVisit)
+    heapq.heappush(nodesToVisit, startNode)
+    
+    while len(nodesToVisit) != 0:
+        currentMinDistNode: Node = heapq.heappop(nodesToVisit)
+        if (currentMinDistNode == endNode):
+            break
+
+        neighbors = getNeighborNodes(currentMinDistNode, nodes)
+
+        for neigbor in neighbors:
+            if neigbor.value == 1:
+                continue
+            tentativeDistToNeighbor = currentMinDistNode.distanceFromStart + 1
+            if tentativeDistToNeighbor > neigbor.distanceFromStart:
+                continue
+
+            neigbor.cameFrom = currentMinDistNode
+            neigbor.distanceFromStart = tentativeDistToNeighbor
+            neigbor.estimatedDistToEnd = tentativeDistToNeighbor + calculateManhatanDistance(neigbor, endNode)
+
+            if neigbor not in nodesToVisit:
+                heapq.heappush(neigbor)
+            else:
+                index =  nodesToVisit.index(neigbor)
+                nodesToVisit = nodesToVisit[:index] + nodesToVisit[index+1:]
+                heapq.heapify(nodesToVisit)
+                heapq.heappush(neigbor)
+    return reconstructPath(endNode)
+
+def initialzeNodes(graph):
+    nodes = []
+    for i, row in enumerate(graph):
+        nodes.append([])
+        for j, val in enumerate(row):
+            nodes[i].append(Node(i, j, val))
+    return nodes
+
+def calculateManhatanDistance(currentNode: Node, endNode: Node) :
+    currentRow = currentNode.row
+    currentCol = currentNode.col
+    endRow = endNode.row
+    endCol = endNode.col
+    return abs(currentRow - endRow) + abs(currentCol - endCol)
+
+
+def getNeighborNodes(node: Node, nodes:List[Node]):
+    neighbor = []
+    numRow = len(nodes)
+    numCol = len(nodes[0])
+    row = node.row
+    col = node.col
+    if row < numRow -1: #Down
+        neighbor.append(nodes[row + 1][col])
+
+    if row > 0: # Up
+        neighbor.append(nodes[row-1][col])
+    
+    if col < numCol - 1:
+        neighbor.append(nodes[row][col + 1])
+
+    if col > 0:
+        neighbor.append(nodes[row][col - 1])
+    
+    return neighbor
+
+def reconstructPath(node :Node):
+    if not node.cameFrom:
+        return []
+    currenNod = node
+    path = []
+    while currenNod :
+        path.append([currenNod.row, currenNod.col])
+        currenNod = currenNod.cameFrom
+    
+    return path[::-1]
