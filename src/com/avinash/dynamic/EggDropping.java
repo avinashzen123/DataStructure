@@ -16,8 +16,6 @@ public class EggDropping {
 			dpTable[1][i] = i;
 		}
 		
-		Arrays.stream(dpTable).map(Arrays::toString) .forEach(System.out::println);
-		System.out.println("\n\n");
 		for (int n = 2; n <= Constant.NUM_OF_EGGS; n++) {
 			for (int m = 1; m <= Constant.NUM_OF_FLOORS; m++) {
 				dpTable[n][m] = Integer.MAX_VALUE;
@@ -27,13 +25,10 @@ public class EggDropping {
 					int maxDrops = 1 + Math.max(dpTable[n-1][x-1], dpTable[n][m - x]);
 					if (maxDrops < dpTable[n][m]) {
 						dpTable[n][m] = maxDrops;
-						Arrays.stream(dpTable).map(Arrays::toString) .forEach(System.out::println);
-						System.out.println("\n\n");
 					}
 				}
 			}
 		}
-		Arrays.stream(dpTable).map(Arrays::toString) .forEach(System.out::println);
 		return dpTable[Constant.NUM_OF_EGGS][Constant.NUM_OF_FLOORS];
 	}
 	

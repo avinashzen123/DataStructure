@@ -5,7 +5,6 @@ public class TilingProblem {
 		return solve(n, new int[n]);
 	}
 	private static int solve(int n, int[] table) {
-		System.out.println("Execution");
 		if (n <= 2)
 			return n;
 		if (table[n-1] != 0) return table[n-1];
