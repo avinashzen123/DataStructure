@@ -1,10 +1,5 @@
 package com.avinash.sliding.window;
 
-<<<<<<< HEAD
-public class SlidingWindow {
-
-}
-=======
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
@@ -201,4 +196,3 @@ public class SlidingWindow {
         System.out.println(Arrays.toString(result));
     }
 }
->>>>>>> 74f9b6c0f89a947c7e8fd71c981d07a057e7afd3
