@@ -1,5 +1,6 @@
 package com.avinash.dynamic;
 
+// https://youtu.be/ZI2z5pq0TqA
 public class TrappingRainWater {
 	public int solve(int[] heights) {
 		// Less than 3 we can 

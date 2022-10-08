@@ -51,18 +51,44 @@ public class NQueenProblem {
 		// We do not have to check columns
 		// Check the diagonal
 		// Diagonal location from top left to bottom right
-		for (int i = rowIndex, j = colIndex; i >= 0 && j >= 0 ; i--, j--) {
-			if (chessTable[i][j] == 1) {
-				return false;
-			}
-		}
+//		for (int i = rowIndex, j = colIndex; i >= 0 && j >= 0 ; i--, j--) {
+//			if (chessTable[i][j] == 1) {
+//				return false;
+//			}
+//		}
+//		
+//		// Diagonal from top right to bottom left
+//		for (int i = rowIndex, j = colIndex; i < chessTable.length && j >= 0; i++, j--) {
+//			if (chessTable[i][j] == 1) {
+//				return false;
+//			}
+//		}
 		
-		// Diagonal from top right to bottom left
-		for (int i = rowIndex, j = colIndex; i < chessTable.length && j >= 0; i++, j--) {
-			if (chessTable[i][j] == 1) {
-				return false;
-			}
-		}
+		for (int c = 0; c < chessTable.length; c++) {
+            if (chessTable[rowIndex][c] == 1) {
+                return false;
+            }
+        }
+        for (int r = rowIndex, c = colIndex; r >= 0 && c < chessTable[0].length; r--, c ++) {
+            if (chessTable[r][c] == 1) {
+                return false;
+            }
+        }
+        for (int r = rowIndex, c = colIndex; r < chessTable.length && c >= 0; r++, c--) {
+            if (chessTable[r][c] == 1) {
+                return false;
+            }
+        }
+        for (int r = rowIndex, c = colIndex; r < chessTable.length && c < chessTable.length; r++, c++) {
+            if (chessTable[r][c] == 1) {
+                return false;
+            }
+        }
+        for (int r = rowIndex, c = colIndex; r >= 0 && c >= 0; r--, c--) {
+            if (chessTable[r][c] == 1) {
+                return false;
+            }
+        }
 		// The position (rowIndex, colIndex) is valid there is no collision.
 		return true;
 	}
@@ -83,7 +109,7 @@ public class NQueenProblem {
 	}
 	
 	public static void main(String[] args) {
-		NQueenProblem nQueenProblem = new NQueenProblem(5);
+		NQueenProblem nQueenProblem = new NQueenProblem(4);
 		nQueenProblem.solve();
 	}
 }

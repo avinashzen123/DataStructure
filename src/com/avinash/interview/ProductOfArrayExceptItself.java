@@ -11,9 +11,11 @@ public class ProductOfArrayExceptItself {
 		for(int i = 0; i < array.length; i++) {
 			prefix[i] = array[i] * (i <= 0 ? 1 : prefix[i-1]);
 		}
+//		System.out.println(Arrays.toString(prefix));
 		for (int i = array.length - 1; i >= 0; i--) {
 			postfix[i] = array[i] * (i >= array.length-1 ? 1 : postfix[i + 1]);
 		}
+//		System.out.println(Arrays.toString(postfix));
 		for (int i = 0; i < array.length; i++) {
 			res[i] = (i <= 0 ? 1 : prefix[i-1]) * (i >= array.length-1 ? 1 : postfix[i+1]);
 		}
@@ -27,18 +29,23 @@ public class ProductOfArrayExceptItself {
 		for(int i = 0; i < nums.length; i++) {
 			res[i] = prefix;
 			prefix  *= nums[i];
+			System.out.print(prefix + " ");
 		}
+		System.out.println();
 		for (int i = nums.length - 1; i >= 0; i--) {
 			res[i] *= postfix;
 			postfix *= nums[i];
+			System.out.print(postfix  + " ");
 		}
+		System.out.println();
 		return res;
 	}
 	
 	public static void main(String[] args) {
-		int[] array = {1,2,3,4};
+//		int[] array = {1,2,3,4};
+		int[] array = {5,1,4,2};
 		int[] productOfArrayExceptItself = productOfArrayExceptItself(array);
-		System.out.println(Arrays.toString(productOfArrayExceptItself));
+//		System.out.println(Arrays.toString(productOfArrayExceptItself));
 		productOfArrayExceptItself = productOfArrayExceptItselfOpt(array);
 		System.out.println(Arrays.toString(productOfArrayExceptItself));
 	}

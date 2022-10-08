@@ -16,8 +16,9 @@ public class QuickSelect {
 		} else if (pivotIndex > k ) {
 			//We have to discard the right sub-array so we have to consider left subarray
 			return quickSelect(array, firstIndex, pivotIndex - 1, k);
+		} else {
+			return array[pivotIndex];			
 		}
-		return array[pivotIndex];
 	}
 
 	/**

@@ -1,68 +1,110 @@
 package com.avinash.linkedlist;
 
-import java.util.Stack;
-
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@ToString
-@AllArgsConstructor
-class ListNode {
-	Integer val;
-	ListNode next;
-	public void setNext(ListNode node) {
-		this.next = node;
-	}
-}
-
 public class LinkedList {
-
+	@AllArgsConstructor
+	@NoArgsConstructor
+	@ToString
+	static class ListNode {
+		int val;
+		ListNode next;
+		public ListNode(int val) {
+			this.val = val;
+		}
+	}
+	
+	public static void traverse(ListNode root) {
+		while(root != null) {
+			System.out.print(root.val + " ");
+			root = root.next;
+		}
+		System.out.println();
+	}
+	
 	public static void main(String[] args) {
-		ListNode head = new ListNode(1, null);
-		head.setNext(new ListNode(1,
-				new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null))))));
-//		head.setNext(new ListNode(5, null));
-		int left = 2;
-//		int right = 4;
-		ListNode slowPointer = head;
-		ListNode fastPointer = head;
-		Stack<ListNode> stack = new Stack<>();
-		Integer middleIndex = 0;
-		Integer totalNode = 0;
-		while(fastPointer!= null && fastPointer.next != null) {
-			fastPointer = fastPointer.next;
-			totalNode ++;
-			if (fastPointer!=null) {
-				fastPointer = fastPointer.next;
-				totalNode++;
-			}
-			stack.push(slowPointer);
-			slowPointer = slowPointer.next;
-			middleIndex++;
+		ListNode head = new ListNode(1, new ListNode(2, new ListNode(3, new ListNode(4, new ListNode(5, null)))));
+		head = reverseLinkedListIter(head);
+		traverse(head);
+		head = reverseLinkedListRec(head, null);
+		traverse(head);
+		
+		ListNode head1 = new ListNode(1, new ListNode(2, new ListNode(4, new ListNode(8, new ListNode(11, null)))));
+		ListNode head2 = new ListNode(3, new ListNode(4, new ListNode(7, new ListNode(9, new ListNode(12, null)))));
+		ListNode mergedHead = mergeTwoSortedList(head1, head2);
+		traverse(mergedHead);
+		
+		reorderList(mergedHead);
+		traverse(mergedHead);
+	}
+
+	private static void reorderList(ListNode node) {
+		if (node == null || node.next == null) return;
+		ListNode slow = node;
+		ListNode fast = node.next.next;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
 		}
-		System.out.println(middleIndex + " " + totalNode);
-		if (totalNode <= 1) {
-		} else if (totalNode == 2) {
-			head.val = head.next.val + head.val;
-			head.next.val = head.val - head.next.val;
-			head.val = head.val - head.next.val;
-		} else {
-			while(middleIndex >= 0 && slowPointer.next != null) {
-				if (middleIndex -1 == left) {
-					ListNode temp1 = stack.pop();
-					temp1.val = (temp1.val + slowPointer.next.val);
-					slowPointer.next.val = (temp1.val - slowPointer.next.val);
-					temp1.val = (temp1.val - slowPointer.next.val);
-					break;
-				}
-				middleIndex--;
-				slowPointer = slowPointer.next;
-			}
+		// reverse nextHalf
+		ListNode secondHalf = slow.next;
+		ListNode prevNode = null;
+		slow.next = null;
+		while (secondHalf != null) {
+			ListNode tmpNode = secondHalf.next;
+			secondHalf.next = prevNode;
+			prevNode = secondHalf;
+			secondHalf = tmpNode;
+		}
+		secondHalf = prevNode;
+		while (secondHalf != null) {
+			ListNode tmp1 = node.next;
+			ListNode tmp2 = secondHalf.next;
+			node.next = secondHalf;
+			secondHalf.next = tmp1;
+			node = tmp1;
+			secondHalf = tmp2;
 		}
 		
 		
-		System.out.println(middleIndex);
-		System.out.println(slowPointer.val);
-		System.out.println(head);
+	}
+
+	private static ListNode mergeTwoSortedList(ListNode node1, ListNode node2) {
+		ListNode node = new ListNode();
+		ListNode tmpNode = node;
+		while(node1 != null && node2 != null) {
+			if (node1.val < node2.val) {
+				tmpNode.next = node1;
+				node1 = node1.next;
+			} else {
+				tmpNode.next = node2;
+				node2 = node2.next;
+			}
+			tmpNode = tmpNode.next;
+		}
+		tmpNode.next = node1 == null ? node2 : node1;
+		return node.next;
+	}
+
+	private static ListNode reverseLinkedListRec(ListNode curNode, ListNode prevNode) {
+		if(curNode == null) return prevNode;
+		ListNode tmpNode = curNode.next;
+		curNode.next = prevNode;
+		prevNode = curNode;
+		return reverseLinkedListRec(tmpNode, prevNode);
+	}
+
+	private static ListNode reverseLinkedListIter(ListNode head) {
+		ListNode curNode  = head;
+		ListNode prevNode = null;
+		while(curNode != null) {
+			ListNode tmpNode = curNode.next;
+			curNode.next = prevNode;
+			prevNode = curNode;
+			curNode = tmpNode;
+		}		
+		return prevNode;
 	}
 }

@@ -1,8 +1,6 @@
 package com.avinash.array;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class SortedSquaredArray {
 	public static int[] sortedSquaredArray(int[] array) {
@@ -24,6 +22,5 @@ public class SortedSquaredArray {
 	public static void main(String[] args) {
 		int[] sortedSquaredArray = sortedSquaredArray(new int[] {0, 25, 25, 100, 100});
 		System.out.println(Arrays.toString(sortedSquaredArray));
-		Map<String, Integer> teamScore = new HashMap<>();
 	}
 }

@@ -1,4 +1,4 @@
-package com.avinash.interview;
+package com.avinash.sliding.window;
 
 public class BestTimeToBuySellStock {
 	
