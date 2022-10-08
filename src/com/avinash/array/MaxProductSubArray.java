@@ -10,9 +10,10 @@ public class MaxProductSubArray {
 		int curMin = 1;
 		for (int num : nums) {
 			if (num != 0) {
-				int temp = curMax * num;
-				curMax = Math.max(curMax * num, Math.max(curMin * num, num));
-				curMin = Math.min(temp, Math.min(curMin * num, num));
+				int curProMax = curMax * num;
+				int curProdMin = curMin * num;
+				curMax = Math.max(curProMax, Math.max(curProdMin, num));
+				curMin = Math.min(curProMax, Math.min(curProdMin, num));
 				result = Math.max(curMax, result);
 			} 
 		}

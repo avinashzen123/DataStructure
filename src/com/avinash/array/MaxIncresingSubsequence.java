@@ -12,8 +12,8 @@ public class MaxIncresingSubsequence {
 		for (int i = 1; i < array.length; i++) {
 			int currentNum = array[i];
 			for (int j = 0; j < i; j++) {
-				int otherSum = array[j];
-				if (otherSum < currentNum && sum[j] + currentNum >= sum[i]) {
+				int otherNum = array[j];
+				if (otherNum < currentNum && sum[j] + currentNum >= currentNum) {
 					sum[i] = sum[j] + currentNum;
 					subSesequence[i] = j;
 				}
@@ -22,6 +22,7 @@ public class MaxIncresingSubsequence {
 				maxSumIdx = i;
 			}
 		}
+		System.out.println(Arrays.toString(subSesequence));
 		int result[] = new int[maxSumIdx];
 		for (int i = maxSumIdx - 1; i >= 0; i--) {
 			if (maxSumIdx != -1) {
@@ -34,6 +35,7 @@ public class MaxIncresingSubsequence {
 	}
 
 	public static void main(String[] args) {
+//		maxSumIncreasingSubSequence(new int[] {10,9,2,5,3,7,101,18});
 		maxSumIncreasingSubSequence(new int[] { 10, 70, 20, 30, 50, 15 });
 	}
 }
