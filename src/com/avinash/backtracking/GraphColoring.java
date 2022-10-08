@@ -8,7 +8,7 @@ public class GraphColoring {
 	
 	public GraphColoring(int[][] graph, int numOfColors) {
 		this.graph = graph;
-		this.numOfVertices = graph[0].length;
+		this.numOfVertices = graph.length;
 		this.colours = new int[numOfVertices];
 		this.numOfColors = numOfColors;
 	}

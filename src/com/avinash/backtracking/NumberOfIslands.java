@@ -1,4 +1,4 @@
-package com.avinash.graph;
+package com.avinash.backtracking;
 
 import java.util.LinkedList;
 import java.util.Queue;
