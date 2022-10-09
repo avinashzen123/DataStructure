@@ -1,4 +1,4 @@
-package com.avinash.dynamic;
+package com.avinash.dynamic.oned;
 
 import java.util.HashMap;
 import java.util.Map;

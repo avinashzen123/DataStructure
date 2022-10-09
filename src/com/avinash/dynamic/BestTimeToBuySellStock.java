@@ -2,7 +2,9 @@ package com.avinash.dynamic;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class BestTimeToBuySellStock {
 
@@ -180,6 +182,44 @@ public class BestTimeToBuySellStock {
 		return dp[transactions][prices.length - 1];
 	}
 
+	/*
+	 * You are given an array prices where prices[i] is the price of a given stock
+	 * on the ith day.
+	 * 
+	 * Find the maximum profit you can achieve. You may complete as many
+	 * transactions as you like (i.e., buy one and sell one share of the stock
+	 * multiple times) with the following restrictions:
+	 * 
+	 * After you sell your stock, you cannot buy stock on the next day (i.e.,
+	 * cooldown one day). Note: You may not engage in multiple transactions
+	 * simultaneously (i.e., you must sell the stock before you buy again).
+	 * 
+	 * Input: prices = [1,2,3,0,2]
+	 * 
+	 * Output: 3
+	 * 
+	 * Explanation: transactions = [buy, sell, cooldown, buy, sell]
+	 * 
+	 */
+	public static int maxProfitWithCollDown(int[] prices) {
+		return dfsWithCoolDown(new HashMap<>(), prices, 0, true);
+	}
+
+	private static int dfsWithCoolDown(Map<String, Integer> cache, int[] prices, int index, boolean buy) {
+		if (index >= prices.length)
+			return 0;
+		String key = index + "" + buy;
+		if (cache.containsKey(key))
+			return cache.get(key);
+		int coolDown = dfsWithCoolDown(cache, prices, index + 1, buy);
+		if (buy) {
+			cache.put(key, Math.max(coolDown, dfsWithCoolDown(cache, prices, index + 1, !buy) - prices[index]));
+		} else {
+			cache.put(key, Math.max(coolDown, dfsWithCoolDown(cache, prices, index + 2, !buy) + prices[index]));
+		}
+		return cache.get(key);
+	}
+
 	public static void main(String[] args) {
 //		System.out.println(maxProfilt(new int[] { 7, 1, 5, 3, 6, 4 }));
 
@@ -194,6 +234,8 @@ public class BestTimeToBuySellStock {
 //		System.out.println(maxProfit3(prices1));
 
 		System.out.println(maxProfit4_1(new int[] { 3, 2, 6, 5, 0, 3 }, 2));
+
+		System.out.println(maxProfitWithCollDown(new int[] { 1, 2, 3, 0, 2 }));
 
 	}
 }

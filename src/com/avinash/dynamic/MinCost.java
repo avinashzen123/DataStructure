@@ -1,4 +1,4 @@
-package com.avinash.array;
+package com.avinash.dynamic;
 
 import java.util.Arrays;
 import java.util.Set;

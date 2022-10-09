@@ -1,5 +1,9 @@
 package com.avinash.dynamic;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class LongestCommonSubSequence {
 	
 	// Time complexity O(2*n) if n == m 
@@ -51,8 +55,40 @@ public class LongestCommonSubSequence {
 		return new StringBuffer(lcs).reverse().toString();
 	}
 	
+	public  static List<Character> longestCommonSubsequence(String str1, String str2) {
+	    // Write your code here.
+	    int[][] table = new int[str1.length() + 1][str2.length() + 1];
+	    for (int row = 1; row <= str1.length(); row++) {
+	      for (int col = 1; col <= str2.length(); col++) {
+	        if (str1.charAt(row - 1) == str2.charAt(col - 1)) {
+	          table[row][col] = 1 + table[row - 1][col - 1];
+	        } else {
+	          table[row][col] = Math.max(table[row - 1][col], table[row][col - 1]);
+	        }
+	      }
+	    }
+	    char[] result = new char[table[str1.length()][str2.length()]];
+	    int resultIdx = result.length - 1;
+	    int row = str1.length();
+	    int col = str2.length();
+	    while (row > 0 && col > 0) {
+	      if (str1.charAt(row-1) == str2.charAt(col-1)) {
+	        result[resultIdx--] = str1.charAt(row-1);
+	        row --;
+	        col --;
+	      } else if (table[row - 1][col] > table[row][col - 1]) {
+	        row --;
+	      } else {
+	        col --;
+	      }
+	    }
+	    System.out.println(Arrays.toString(result));
+	    return new ArrayList<Character>();
+	  }
+	
 	public static void main(String[] args) {
 		System.out.println("LCS is : " + lcsDynamicProgramming("abcd", "rtbxxxd"));
+		System.out.println("LCS is : " + longestCommonSubsequence("abcd", "rtbxxxd"));
 		
 		System.out.println("LCS is : " + lcsRecursion("abcd", "rtbxxxd"));
 	}

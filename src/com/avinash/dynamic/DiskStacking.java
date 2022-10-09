@@ -6,6 +6,8 @@ import java.util.List;
 
 public class DiskStacking {
 
+	// https://leetcode.com/problems/maximum-height-by-stacking-cuboids/
+	
 	public static List<Integer[]> diskStacking(List<Integer[]> disks) {
 		// Write your code here.
 		disks.sort((a, b) -> (a[0] * a[1]) - (b[0] * b[1]));

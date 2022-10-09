@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class DistinctSequences {
 	// https://leetcode.com/problems/distinct-subsequences/
+	//https://www.youtube.com/watch?v=9yV6Elqvblw
 	public static int numDistinct(String s, String t) {
 		int[][] table = new int[s.length() + 1][t.length() + 1];
 		Arrays.stream(table).forEach(ar -> Arrays.fill(ar, -1));
@@ -12,8 +13,6 @@ public class DistinctSequences {
 	}
 
 	private static int dfs(String s, String t, int[][] table, int row, int col) {
-		Arrays.stream(table).map(Arrays::toString).forEach(System.out::println);
-		System.out.println("-------------");
 		if (col >= t.length())
 			return 1;
 		if (row >= s.length())

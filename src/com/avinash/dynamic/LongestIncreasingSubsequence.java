@@ -3,6 +3,7 @@ package com.avinash.dynamic;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+//https://www.youtube.com/watch?v=cjWnW0hdF1Y
 public class LongestIncreasingSubsequence {
 
 	public static int longestIncreasingSubsequence(int[] arr, int pos, int prevValue) {
@@ -39,6 +40,7 @@ public class LongestIncreasingSubsequence {
             }
             maximumSoFar = Math.max(maximumSoFar, LIS[i]);
         }
+        System.out.println(Arrays.toString(LIS));
         return maximumSoFar;
     }
 

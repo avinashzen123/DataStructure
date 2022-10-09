@@ -1,6 +1,8 @@
 package com.avinash.dynamic;
 
-public class KnapScackProble1 {
+import java.util.Arrays;
+
+public class KnapScackProblem1 {
 	public static void main(String[] args) {
 		int numOfItems = 4;
 		int capacityOfKnapsack = 7;
@@ -23,6 +25,7 @@ public class KnapScackProble1 {
 				}
 			}
 		}
+		Arrays.stream(dpTable).map(Arrays::toString).forEach(System.out::println);
 		System.out.println("Total Benifit :" + dpTable[numberOfItems][capacity]);
 		for (int i = numberOfItems, w = capacity; i > 0; i--) {
 			if(dpTable[i][w] != 0 && dpTable[i][w] != dpTable[i-1][w]) {

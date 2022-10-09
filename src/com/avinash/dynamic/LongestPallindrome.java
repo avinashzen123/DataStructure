@@ -1,5 +1,6 @@
 package com.avinash.dynamic;
 
+import java.util.Arrays;
 import java.util.stream.IntStream;
 
 /**
@@ -28,7 +29,7 @@ public class LongestPallindrome {
 		}
 		for (int length = 3; length <= n; length++) {
 			for (int row = 0; row < n - length + 1; row++) {
-				int column =	 row + length - 1;
+				int column = row + length - 1;
 				if (table[row + 1][column - 1] && s.charAt(row) == s.charAt(column)) {
 					table[row][column] = true;
 					if (length > maxLenth) {
@@ -42,9 +43,36 @@ public class LongestPallindrome {
 		return s.substring(start, start + maxLenth);
 	}
 
+	public static String longestPallindromeDP(String s) {
+		boolean isPallindrome[][] = new boolean[s.length()][s.length()];
+		int max = 0;
+		int left = 0;
+		int right = 1;
+		for (int row = s.length() - 1; row >= 0; row--) {
+			for (int col = row; col < s.length(); col++) {
+				if (row == col) {
+					isPallindrome[row][col] = true;
+				} else if (s.charAt(row) == s.charAt(col)) {
+					if (col - row == 1) {
+						isPallindrome[row][col] = true;
+					} else {
+						isPallindrome[row][col] = isPallindrome[row + 1][col - 1];
+					}
+				}
+				if (isPallindrome[row][col] && col - row + 1 > max) {
+					max = col - row + 1;
+					left = row;
+					right = col + 1;
+				}
+			}
+		}
+//		Arrays.stream(isPallindrome).map(Arrays::toString).forEach(System.out::println);
+		return s.substring(left, right);
+	}
+
 	public static void printTable(boolean[][] x, String str) {
 		for (boolean[] y : x) {
-			for (boolean z : y) {	
+			for (boolean z : y) {
 				System.out.print(z + " ,  ");
 			}
 			System.out.println();
@@ -54,13 +82,15 @@ public class LongestPallindrome {
 
 	public static void main(String[] args) {
 
-		String str = "forgeeksskeegfor";
-		System.out.println("Length is: " + longestPallindrome(str));
+//		String str = "forgeeksskeegfor";
+//		System.out.println("Length is: " + longestPallindrome(str));
 		System.out.println("Length is: " + longestPallindrome("babad"));
+		
+		System.out.println("Length is: " + longestPallindromeDP("z234a5abbbba54a32z"));
 
-		System.out.println("Length is: " + longestPallindrome("cbbd"));
-		
-		System.out.println("Length is: " + longestPallindrome("ccc"));
-		
+//		System.out.println("Length is: " + longestPallindrome("cbbd"));
+//
+//		System.out.println("Length is: " + longestPallindrome("ccc"));
+
 	}
 }

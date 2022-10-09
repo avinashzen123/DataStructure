@@ -1,5 +1,8 @@
 package com.avinash.dynamic.oned;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class HouseRobber {
 	// https://leetcode.com/problems/house-robber/
 	/*
@@ -85,14 +88,81 @@ public class HouseRobber {
 
 	private static int rob2Helper(int[] nums, int start, int end) {
 		int robHouseWithIncludingLastHoue = 0;
-		int robHouseWithoutIncludingLastHoust = 0;
+		int robHouseWithoutIncludingLastHouse = 0;
 		for (int i = start; i < end; i++) {
-			int temp = Math.max(robHouseWithoutIncludingLastHoust + nums[i], robHouseWithIncludingLastHoue);
-			robHouseWithoutIncludingLastHoust = robHouseWithIncludingLastHoue;
+			int temp = Math.max(robHouseWithoutIncludingLastHouse + nums[i], robHouseWithIncludingLastHoue);
+			robHouseWithoutIncludingLastHouse = robHouseWithIncludingLastHoue;
 			robHouseWithIncludingLastHoue = temp;
 		}
 		return robHouseWithIncludingLastHoue;
 	}
+
+	public class TreeNode {
+		int val;
+		TreeNode left;
+		TreeNode right;
+
+		TreeNode() {
+		}
+
+		TreeNode(int val) {
+			this.val = val;
+		}
+
+		TreeNode(int val, TreeNode left, TreeNode right) {
+			this.val = val;
+			this.left = left;
+			this.right = right;
+		}
+	}
+
+	/*
+	 * https://leetcode.com/problems/house-robber-iii/
+	 * 
+	 * The thief has found himself a new place for his thievery again. There is only
+	 * one entrance to this area, called root.
+	 * 
+	 * Besides the root, each house has one and only one parent house. After a tour,
+	 * the smart thief realized that all houses in this place form a binary tree. It
+	 * will automatically contact the police if two directly-linked houses were
+	 * broken into on the same night.
+	 * 
+	 * Given the root of the binary tree, return the maximum amount of money the
+	 * thief can rob without alerting the police
+	 * 
+	 * 
+	 * Input: root = [3,2,3,null,3,null,1] Output: 7 Explanation: Maximum amount of
+	 * money the thief can rob = 3 + 3 + 1 = 7.
+	 * 
+	 */
+	
+	
+	public int rob(TreeNode root) {
+        // if (root == null) return 0;
+        // int ans = 0;
+        // if (root.left != null) {
+        //     ans += rob(root.left.left) + rob(root.left.right);
+        // }
+        // if (root.right != null) {
+        //     ans+= rob(root.right.left) + rob(root.right.right);
+        // }
+        // return Math.max(ans + root.val, rob(root.left) + rob(root.right));
+        return rob(root, new HashMap<>());
+    }
+    private int rob(TreeNode root, Map<TreeNode, Integer> map) {
+        if (root == null) return 0;
+        if (map.containsKey(root)) return map.get(root);
+        int ans = 0;
+        if (root.left != null) {
+            ans += rob(root.left.right) + rob(root.left.left);
+        }
+        if (root.right != null) {
+            ans += rob(root.right.left) + rob(root.right.right);
+        }
+        ans = Math.max(ans + root.val, rob(root.left) + rob(root.right));
+        map.put(root, ans);
+        return ans;
+    }
 
 	public static void main(String[] args) {
 		System.out.println(rob(new int[] { 1, 2, 3, 1 }));

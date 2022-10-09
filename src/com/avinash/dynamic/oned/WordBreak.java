@@ -1,12 +1,11 @@
-package com.avinash.string;
+package com.avinash.dynamic.oned;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import javax.net.ssl.CertPathTrustManagerParameters;
 
 /**
  * Given a string s and a dictionary of words dict, determine if s can be
@@ -47,7 +46,7 @@ public class WordBreak {
 				}
 			}
 		}
-
+		System.out.println(Arrays.toString(t));
 		return t[s.length()];
 	}
 

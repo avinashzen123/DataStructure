@@ -1,6 +1,8 @@
-package com.avinash.interview;
+package com.avinash.dynamic;
 
-public class InterleavingString {
+import java.util.Arrays;
+
+public class InterWeavingString {
 
 	 // https://www.youtube.com/watch?v=3Rw3p9LrgvE
     public static boolean isInterleave(String str1, String str2, String str3) {
@@ -19,6 +21,7 @@ public class InterleavingString {
                 }
             }
         }
+        Arrays.stream(dpTable).map(Arrays::toString).forEach(System.out::println);
         return dpTable[0][0];
     }
 
@@ -29,6 +32,6 @@ public class InterleavingString {
         s1 = "aabcc"; 
         s2 = "dbbca";
         s3 = "aadbbbaccc";
-        System.out.println(isInterleave(s1, s2, s3));
+//        System.out.println(isInterleave(s1, s2, s3));
 	}
 }
