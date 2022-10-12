@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.PriorityQueue;
 
+// https://www.youtube.com/watch?v=6FPsqiCS2g8 longest 1
 // https://leetcode.com/problems/minimum-interval-to-include-each-query/
 public class MinimumIntervalToIncludeQuery {
 

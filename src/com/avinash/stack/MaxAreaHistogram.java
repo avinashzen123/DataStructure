@@ -26,28 +26,31 @@ public class MaxAreaHistogram {
 		Stack<Integer> left = new Stack<>();
 		Arrays.fill(leftMin, -1);
 		for (int i = heights.length - 1; i >= 0; i--) {
-            while (!left.isEmpty() && heights[left.peek()] > heights[i]) {
-                leftMin[left.pop()] = i;
-            }
-            left.add(i);
+			while (!left.isEmpty() && heights[left.peek()] > heights[i]) {
+				leftMin[left.pop()] = i;
+			}
+			left.add(i);
 		}
 		int[] rightMin = new int[n];
 		Stack<Integer> right = new Stack<>();
 		Arrays.fill(rightMin, heights.length);
 		for (int i = 0; i < heights.length; i++) {
-            while(!right.isEmpty() && heights[right.peek()] > heights[i]) {
-                rightMin[right.pop()] = i;
-            }
-            right.add(i);
+			while (!right.isEmpty() && heights[right.peek()] > heights[i]) {
+				rightMin[right.pop()] = i;
+			}
+			right.add(i);
 		}
 		int area = Integer.MIN_VALUE;
 		for (int i = 0; i < heights.length; i++) {
 			area = Math.max(area, heights[i] * (rightMin[i] - leftMin[i] - 1));
 		}
 		return area;
+
 	}
-	
+
 	public static void main(String[] args) {
-		System.out.println(largestRectangleArea(new int[] {2,1,5,6,2,3}));
+		System.out.println(largestRectangleArea(new int[] { 1, 2, 3, 4, 5, 11 }));
+		System.out.println(largestRectangleArea(new int[] {1, 3, 3, 2, 4, 1, 5, 3, 2}));
+		System.out.println(largestRectangleArea(new int[] { 2, 1, 5, 6, 2, 3 }));
 	}
 }

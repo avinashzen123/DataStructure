@@ -71,8 +71,8 @@ public class SudoKu {
 
 		// If the given number is already in the box, the number
 		// Can not be part of the solution.
-		int boxRowOffSet = (rowIndex / 3) * Constant.BOX_SIZE;
-		int boxColumnOffset = (colIndex / 3) * Constant.BOX_SIZE;
+		int boxRowOffSet = (rowIndex / Constant.BOX_SIZE) * Constant.BOX_SIZE;
+		int boxColumnOffset = (colIndex / Constant.BOX_SIZE) * Constant.BOX_SIZE;
 		for (int i = 0; i < Constant.BOX_SIZE; i++) {
 			for (int j = 0; j < Constant.BOX_SIZE; j++) {
 				if (sudokuTable[boxRowOffSet + i][boxColumnOffset + j] == num) {
@@ -97,18 +97,20 @@ public class SudoKu {
 	}
 
 	public static void main(String[] args) {
-		int[][] sudokuTable = { 
-				{ 3, 0, 6, 5, 0, 8, 4, 0, 0 }, 
-				{ 5, 2, 0, 0, 0, 0, 0, 0, 0 },
-				{ 0, 8, 7, 0, 0, 0, 0, 3, 1 }, 
-				{ 0, 0, 3, 0, 1, 0, 0, 8, 0 }, 
-				{ 9, 0, 0, 8, 6, 3, 0, 0, 5 },
-				{ 0, 5, 0, 0, 9, 0, 6, 0, 0 }, 
-				{ 1, 3, 0, 0, 0, 0, 2, 5, 0 }, 
-				{ 0, 0, 0, 0, 0, 0, 0, 7, 4 },
+		int[][] sudokuTable = { { 3, 0, 6, 5, 0, 8, 4, 0, 0 }, { 5, 2, 0, 0, 0, 0, 0, 0, 0 },
+				{ 0, 8, 7, 0, 0, 0, 0, 3, 1 }, { 0, 0, 3, 0, 1, 0, 0, 8, 0 }, { 9, 0, 0, 8, 6, 3, 0, 0, 5 },
+				{ 0, 5, 0, 0, 9, 0, 6, 0, 0 }, { 1, 3, 0, 0, 0, 0, 2, 5, 0 }, { 0, 0, 0, 0, 0, 0, 0, 7, 4 },
 				{ 0, 0, 5, 2, 0, 6, 3, 0, 0 } };
 
 		SudoKu ku = new SudoKu(sudokuTable);
+		ku.solveProblem();
+
+		int[][] inputValues = new int[][] { { 7, 8, 0, 4, 0, 0, 1, 2, 0 }, { 6, 0, 0, 0, 7, 5, 0, 0, 9 },
+				{ 0, 0, 0, 6, 0, 1, 0, 7, 8 }, { 0, 0, 7, 0, 4, 0, 2, 6, 0 }, { 0, 0, 1, 0, 5, 0, 9, 3, 0 },
+				{ 9, 0, 4, 0, 6, 0, 0, 0, 5 }, { 0, 7, 0, 3, 0, 0, 0, 1, 2 }, { 1, 2, 0, 0, 0, 7, 4, 0, 0 },
+				{ 0, 4, 9, 2, 0, 6, 0, 0, 7 } };
+				
+		ku = new SudoKu(inputValues);
 		ku.solveProblem();
 	}
 }

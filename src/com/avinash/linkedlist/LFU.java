@@ -4,4 +4,5 @@ package com.avinash.linkedlist;
 // https://www.enjoyalgorithms.com/blog/least-frequently-used-cache
 public class LFU {
 
+	
 }

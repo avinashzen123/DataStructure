@@ -10,21 +10,24 @@ public class DetectCycle {
 		}
 	}
 	
-	public static LinkedList findLoop(LinkedList head) {
-		// Write your code here.
-		LinkedList fast = head;
-		LinkedList slow = head;
-		do {
-			fast = fast.next.next;
-			slow = slow.next;
-		} while (fast != slow);
-		fast = head;
-		while (fast != slow) {
-			fast = fast.next;
-			slow = slow.next;
-		}
-		return slow;
-	}
+	
+	public static LinkedList detectCycle(LinkedList head) {
+        if (head == null || head.next == null) {
+            return null;
+        }
+        LinkedList fast = head;
+        LinkedList slow = head;
+        do {
+            fast = fast.next.next;
+            slow = slow.next;
+        } while (fast != null && fast.next != null && slow != fast);
+        fast = head;
+        while(slow != null && slow != fast) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+        return slow;
+    }
 
 	public static void main(String[] args) {
 		LinkedList zero = new LinkedList(0);
@@ -48,6 +51,6 @@ public class DetectCycle {
 		eight.next = nine;
 		nine.next = four;
 		
-		System.out.println(findLoop(one).value);
+		System.out.println(detectCycle(one).value);
 	}
 }

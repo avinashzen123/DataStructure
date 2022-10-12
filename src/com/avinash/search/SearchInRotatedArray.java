@@ -5,7 +5,7 @@ public class SearchInRotatedArray {
 		int left = 0;
 		int right = array.length - 1;
 		while (left <= right) {
-			int mid = (left + right)/2;
+			int mid = (left + right) / 2;
 			if (target == array[mid]) {
 				return mid;
 			}
@@ -25,8 +25,8 @@ public class SearchInRotatedArray {
 		}
 		return -1;
 	}
-	
+
 	public static void main(String[] args) {
-		System.out.println(search(new int[] {4, 5, 6, 7, 0, 1, 2}, 0));
+		System.out.println(search(new int[] { 4, 5, 6, 7, 0, 1, 2 }, 1));
 	}
 }

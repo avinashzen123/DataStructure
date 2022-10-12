@@ -1,4 +1,4 @@
-package com.avinash.array;
+package com.avinash.interval;
 
 import java.util.ArrayList;
 import java.util.Arrays;

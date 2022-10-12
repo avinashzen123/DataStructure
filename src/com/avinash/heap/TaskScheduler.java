@@ -47,7 +47,7 @@ public class TaskScheduler {
             if (!pq.isEmpty()) {
                 int val = pq.poll();
                 val--;
-                if (val > 0) q.add(new Pair(val, time + n));
+                if (val > 0) q.add(new Pair<Integer, Integer>(val, time + n));
             }
 
             if (!q.isEmpty() && q.peek().getValue() == time) 

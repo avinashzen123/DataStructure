@@ -56,7 +56,8 @@ public class LongestPallindrome {
 					if (col - row == 1) {
 						isPallindrome[row][col] = true;
 					} else {
-						isPallindrome[row][col] = isPallindrome[row + 1][col - 1];
+						if (isPallindrome[row + 1][col - 1])
+							isPallindrome[row][col] = isPallindrome[row + 1][col - 1];
 					}
 				}
 				if (isPallindrome[row][col] && col - row + 1 > max) {

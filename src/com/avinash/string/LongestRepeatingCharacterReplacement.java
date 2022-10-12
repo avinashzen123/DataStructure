@@ -1,4 +1,4 @@
-package com.avinash.array;
+package com.avinash.string;
 
 // Longest Repeating Character Replacement
 // https://www.youtube.com/watch?v=gqXU1UyA8pk&t=716s

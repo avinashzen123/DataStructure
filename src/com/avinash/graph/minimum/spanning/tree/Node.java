@@ -1,4 +1,4 @@
-package com.avinash.minimum.spanning.tree;
+package com.avinash.graph.minimum.spanning.tree;
 
 public class Node {
     private final int id;

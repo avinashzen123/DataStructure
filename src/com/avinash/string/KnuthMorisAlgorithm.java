@@ -10,29 +10,29 @@ public class KnuthMorisAlgorithm {
 		int[] substringMatchIndex = new int[substring.length()];
 		Arrays.fill(substringMatchIndex, -1);
 		int index = 1;
-		int len = 0;
+		int pattStart = 0;
 		while (index < substring.length()) {
-			if (substring.charAt(index) == substring.charAt(len)) {
-				substringMatchIndex[index] = len;
+			if (substring.charAt(index) == substring.charAt(pattStart)) {
+				substringMatchIndex[index] = pattStart;
 				index++;
-				len++;
-			} else if (len > 0) {
-				len = substringMatchIndex[len - 1] + 1;
+				pattStart++;
+			} else if (pattStart > 0) {
+				pattStart = substringMatchIndex[pattStart - 1] + 1;
 			} else {
 				index++;
 			}
 		}
 		System.out.println(Arrays.toString(substringMatchIndex));
-		len = 0;
+		pattStart = 0;
 		index = 0;
-		while (index + substring.length() - len <= string.length() ) {
-			if (string.charAt(index) == substring.charAt(len)) {
-				if (len == substring.length() - 1)
+		while (index + substring.length() - pattStart <= string.length() ) {
+			if (string.charAt(index) == substring.charAt(pattStart)) {
+				if (pattStart == substring.length() - 1)
 					return true;
 				index++;
-				len++;
-			} else if (len > 0) {
-				len = substringMatchIndex[len - 1] + 1;
+				pattStart++;
+			} else if (pattStart > 0) {
+				pattStart = substringMatchIndex[pattStart - 1] + 1;
 			} else {
 				index++;
 			}

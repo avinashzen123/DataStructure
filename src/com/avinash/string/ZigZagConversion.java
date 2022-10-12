@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ZigZagConversion {
 	public static String convert(String s, int numRows) {
+		if (numRows <= 1) return s;
 		boolean goingDown = true;
 		List<List<String>> zigZag = new ArrayList<>();
 		for (int i = 0; i < numRows; i++) {

@@ -1,7 +1,5 @@
 package com.avinash.array;
 
-import java.util.Arrays;
-
 public class PartitionDisjointSet {
 
 	/*
@@ -44,7 +42,7 @@ public class PartitionDisjointSet {
 	}
 	
 	public static void main(String[] args) {
-//		System.out.println(partitionDisjoint(new int[] {5,0,3,8,6})); // 3
+		System.out.println(partitionDisjoint(new int[] {5,0,3,8,6})); // 3	
 		System.out.println(partitionDisjoint(new int[] {1,1,1,0,6,12}));
 	}
 

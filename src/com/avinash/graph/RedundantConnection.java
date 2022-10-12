@@ -11,6 +11,8 @@ public class RedundantConnection {
 		for (int i = 0;i < parent.length; i++) parent[i] = i;
 		for (int[] edge : edges) {
 			if (!union(edge[0], edge[1], parent, rank)) {
+				System.out.println(Arrays.toString(parent));
+				System.out.println(Arrays.toString(rank));
 				return edge;
 			}
 		}

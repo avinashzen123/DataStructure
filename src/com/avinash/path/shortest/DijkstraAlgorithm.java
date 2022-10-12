@@ -11,6 +11,7 @@ public class DijkstraAlgorithm {
         this.edges = edges;
     }
 
+    // O((v + e )log(v))
     public void computeShortesPath(Vertex vertex) {
         PriorityQueue<Vertex> queue = new PriorityQueue<>();
         vertex.setDistance(0d);

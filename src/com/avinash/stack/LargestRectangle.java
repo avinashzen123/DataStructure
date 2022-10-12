@@ -24,7 +24,7 @@ public class LargestRectangle {
 		return maxArea;
 	}
 	
-	public static int loargestRectableUnderSkylineStack(List<Integer> buildings) {
+	public static int largestRectableUnderSkylineStack(List<Integer> buildings) {
 		buildings.add(0);
 		int maxArea = 0;
 		Stack<Integer> pillarIndices = new Stack<>();
@@ -44,6 +44,6 @@ public class LargestRectangle {
 	public static void main(String[] args) {
 		int[] heights = { 1, 3, 3, 2, 4, 1, 5, 3, 2 };
 		System.out.println(
-				loargestRectableUnderSkylineStack(Arrays.stream(heights).boxed().collect(Collectors.toList())));
+				largestRectableUnderSkylineStack(Arrays.stream(heights).boxed().collect(Collectors.toList())));
 	}
 }

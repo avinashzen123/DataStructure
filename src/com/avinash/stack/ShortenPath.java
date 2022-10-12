@@ -2,37 +2,40 @@ package com.avinash.stack;
 
 import java.util.Arrays;
 import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class ShortenPath {
 
 	public static String shortenPath(String path) {
-		boolean startsWithSlash = path.charAt(0) == '/';
-		String[] split = path.split("/");
-		split = Arrays.stream(split).filter(s -> s.length() >0 && !s.equals(".")).toArray(String[]::new);
-		if (startsWithSlash) {
-			
-		}
-		
-		StringBuffer result = new StringBuffer();
+
 		Stack<String> stack = new Stack<>();
+		String[] split = Arrays.stream(path.split("/")).filter(s -> s.length() > 0 && !s.equals(".")).toArray(String[]::new);
+		if (path.charAt(0) == '/') {
+			stack.add("");
+		}
+
 		for (String s : split) {
 			if (s.equals("..")) {
-				if (!stack.isEmpty()) stack.pop();
-			} else if (s.equals(".")) {
-				
+				if (stack.isEmpty() || stack.peek().equals("..")) { // {Path starts with ..
+					stack.push(s);
+				} else if (!stack.peek().equals("")) { // Path has empty string remove it
+					stack.pop();
+				}
 			} else {
 				stack.push(s);
 			}
 		}
-		for (int i = 0; i < stack.size(); i++) {
-			if (stack.get(i).length() > 0) {
-				result.append("/" + stack.get(i));
-			}
+		if (stack.isEmpty() || (stack.size() == 1 && stack.peek().length() == 0)) {
+			return "/";
 		}
-		return result.toString();
+
+		return stack.stream().collect(Collectors.joining("/"));
 	}
-	
+
 	public static void main(String[] args) {
-		System.out.println(shortenPath("/foo/../test/../test/../foo//bar/./baz"));
+//		System.out.println(shortenPath("/foo/../test/../test/../foo//bar/./baz"));
+		System.out.println(shortenPath(
+				"/../../../this////one/./../../is/../../going/../../to/be/./././../../../just/a/forward/slash/../../../../../.."));
+//		System.out.println(shortenPath("/"));
 	}
 }

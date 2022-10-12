@@ -36,7 +36,7 @@ public class QuickSelect {
 	 */
 	private static int partition(int[] array, int firstIndex, int lastIndex) {
 		int pivot = new Random().nextInt(lastIndex - firstIndex + 1) + firstIndex;
-		swap(array, pivot, lastIndex);
+//		swap(array, pivot, lastIndex);
 		for (int i = firstIndex; i < lastIndex; i++) {
 			if (array[i] < array[lastIndex]) {
 				swap(array, i, firstIndex);

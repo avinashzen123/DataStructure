@@ -28,6 +28,9 @@ public class CheapestFlightWithKStops {
 	 * = 0 Output: 500 Explanation: The graph is shown above. The optimal path with
 	 * no stops from city 0 to 2 is marked in red and has cost 500.
 	 * 
+	 * https://www.youtube.com/watch?v=5eIK3zUdYmE
+	 * 
+	 * Bellmon ford algorithm
 	 */
 	public int findCheapestPrice(int n, int[][] flights, int src, int dst, int k) {
 		int[] prices = new int[n];

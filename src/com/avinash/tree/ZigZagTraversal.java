@@ -38,11 +38,11 @@ public class ZigZagTraversal {
 				//Pushing mechanism
 				if (l % 2 != 0) {
 					if (temp.right != null) {
-						q.add(temp.right);
+						q.offerLast(temp);
 						v.add(temp.right.data);
 					}
 					if (temp.left != null) {
-						q.add(temp.left);
+						q.offerLast(temp.left);
 						v.add(temp.left.data);
 					}
 				} else {
