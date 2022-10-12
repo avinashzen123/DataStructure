@@ -86,21 +86,23 @@ public class CoinChange {
 	}
 	
 	public static int combinationOfCoinChangeDP(int[] coins, int amount) {
-		int temp[][] = new int[coins.length + 1][amount + 1];
-		for (int i = 0; i <= coins.length; i++) {
-			temp[i][0] = 1;
+		int dpTable[][] = new int[coins.length + 1][amount + 1];
+		int zeroAmt = 0;
+		for (int curCoin = 0; curCoin <= coins.length; curCoin++) {
+			dpTable[curCoin][zeroAmt] = 1;
 		}
-		for (int i = 1; i <= coins.length; i++) {
-			for (int j = 1; j <= amount; j++) {
-				if (j < coins[i - 1]) {
-					temp[i][j] = temp[i - 1][j];
+		for (int coinIdx = 1; coinIdx <= coins.length; coinIdx++) {
+			for (int curAmt = 1; curAmt <= amount; curAmt++) {
+				int curCoin = coins[coinIdx - 1];
+				if (curAmt < curCoin) {
+					dpTable[coinIdx][curAmt] = dpTable[coinIdx - 1][curAmt];
 				} else {
-					temp[i][j] = temp[i - 1][j] + temp[i][j - coins[i - 1]];
+					dpTable[coinIdx][curAmt] = dpTable[coinIdx - 1][curAmt] + dpTable[coinIdx][curAmt - curCoin];
 				}
 			}
 		}
-		Arrays.stream(temp).map(Arrays::toString).forEach(System.out::println);
-		return temp[coins.length][amount];
+		Arrays.stream(dpTable).map(Arrays::toString).forEach(System.out::println);
+		return dpTable[coins.length][amount];
 	}
 	
 	public static void main(String[] args) {

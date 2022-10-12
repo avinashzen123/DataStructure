@@ -11,13 +11,13 @@ public class InterWeavingString {
         }
         boolean[][] dpTable = new boolean[str1.length() + 1][str2.length() + 1];
         dpTable[str1.length()][str2.length()] = true;
-        for (int row = str1.length(); row >= 0; row--) {
-            for (int col = str2.length(); col >= 0; col--) {
-                if (row < str1.length() && str1.charAt(row) == str3.charAt(row + col) && dpTable[row + 1][col]) {
-                    dpTable[row][col] = true;
+        for (int str1Idx = str1.length(); str1Idx >= 0; str1Idx--) {
+            for (int str2Idx = str2.length(); str2Idx >= 0; str2Idx--) {
+                if (str1Idx < str1.length() && str1.charAt(str1Idx) == str3.charAt(str1Idx + str2Idx) && dpTable[str1Idx + 1][str2Idx]) {
+                    dpTable[str1Idx][str2Idx] = true;
                 }
-                if (col < str2.length() && str2.charAt(col) == str3.charAt(row + col) && dpTable[row][col+1]) {
-                    dpTable[row][col] = true;
+                if (str2Idx < str2.length() && str2.charAt(str2Idx) == str3.charAt(str1Idx + str2Idx) && dpTable[str1Idx][str2Idx+1]) {
+                    dpTable[str1Idx][str2Idx] = true;
                 }
             }
         }

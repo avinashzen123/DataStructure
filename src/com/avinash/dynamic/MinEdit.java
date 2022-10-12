@@ -17,9 +17,9 @@ public class MinEdit {
 	public static int findMinEdit(String str1, String str2) {
 		int length1 = str1.length() + 1;
 		int length2 = str2.length() + 1;
-		int[][] dpTale = new int[length1][];
+		int[][] dpTale = new int[length1][length2];
 		dpTale[0] = IntStream.range(0, length2).map(i -> i).toArray();
-		IntStream.range(1, length1).forEach(i -> dpTale[i] = new int[length2]);
+//		IntStream.range(1, length1).forEach(i -> dpTale[i] = new int[length2]);
 		IntStream.range(1, length1).forEach(i -> dpTale[i][0] = i);
 		for (int i = 1; i < dpTale.length; i++) {
 			for (int j = 1; j < dpTale[i].length; j++) {

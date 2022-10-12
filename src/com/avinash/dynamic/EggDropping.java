@@ -1,7 +1,7 @@
 package com.avinash.dynamic;import java.util.Arrays;
 
 interface Constant {
-	Integer NUM_OF_EGGS = 2;
+	Integer NUM_OF_EGGS = 3;
 	Integer NUM_OF_FLOORS = 100;
 }
 public class EggDropping {
