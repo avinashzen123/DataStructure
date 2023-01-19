@@ -19,8 +19,18 @@ public class FindMinimumInRotatedArray {
 		}
 		return res;
 	}
+
+	public static int findMin1(int[] array) {
+		int res = array[0];
+		int localMin = array[0];
+		for (int index = 1 ; index < array.length - 1; index++) {
+			localMin = Math.min(localMin, array[index]);
+			res = Math.min(res, localMin);
+		}
+		return res;
+	}
 	
 	public static void main(String[] args) {
-		System.out.println(findMin(new int[] {3, 4, 5, 1, 2}));
+		System.out.println(findMin1(new int[] {3, 4, 5, 1, 2}));
 	}
 }
