@@ -3,6 +3,7 @@ package com.avinash.dynamic;
 import java.util.Arrays;
 import java.util.stream.IntStream;
 
+// https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
 class SubSetSumRecursive {
 	/*
 	 * Therefore time complexity of the above solution is exponential. The problem
@@ -60,12 +61,12 @@ class SubSetSumTabulation {
 			for (int curValIndex = 1; curValIndex <= length; curValIndex++) {
 				subset[curSum][curValIndex] = subset[curSum][curValIndex - 1];
 				if (curSum >= array[curValIndex - 1]) {
+					int raminingSum = curSum - array[curValIndex - 1];
 					subset[curSum][curValIndex] = subset[curSum][curValIndex]
-							|| subset[curSum - array[curValIndex - 1]][curValIndex - 1];
+							|| subset[raminingSum][curValIndex - 1];
 				}
 			}
 		}
-		Arrays.stream(subset).map(Arrays::toString).forEach(System.out::println);
 		return subset[sum][length];
 	}
 }
