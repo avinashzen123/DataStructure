@@ -1,7 +1,7 @@
 package com.avinash.dynamic;
 
 // https://www.geeksforgeeks.org/count-ways-reach-nth-stair/
-class Recursive {
+class RecursiveWayCounting {
 	/*
 	 * TIme complexity O(n ^ 2)
 	 */
@@ -57,7 +57,7 @@ public class NumberOfWaysToClimbStairs {
     public static void main(String[] args) {
         int stairs = 5;
 		int steps = 2;
-		System.out.println(Recursive.countNumberOfWays(stairs + 1, steps));
+		System.out.println(RecursiveWayCounting.countNumberOfWays(stairs + 1, steps));
 		System.out.println(DynamciProgramming.countNumberOfWays(stairs , steps));
 		System.out.println(DynamciProgramming.countNumberOfWaysTwoStep(stairs));
     }
