@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.stream.IntStream;
 
 // https://www.geeksforgeeks.org/subset-sum-problem-dp-25/
+// https://www.geeksforgeeks.org/subset-sum-problem-osum-space/?ref=rp
 class SubSetSumRecursive {
 	/*
 	 * Therefore time complexity of the above solution is exponential. The problem
