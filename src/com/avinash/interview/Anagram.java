@@ -1,7 +1,5 @@
 package com.avinash.interview;
 
-import java.util.Arrays;
-
 public class Anagram {
 
 	public static boolean solve(String s1, String s2) {
@@ -12,11 +10,17 @@ public class Anagram {
 		for (char c : s2.toCharArray()) {
 			--frequencey[c - 'a'];
 		}
-		return Arrays.stream(frequencey).sum() == 0;
+		for (int i : frequencey) {
+			if (i != 0) {
+				return false;
+			}
+		}
+		return true;
 	}
 	
 	public static void main(String[] args) {
 		System.out.println(solve("adam", "daniel"));
 		System.out.println(solve("adam", "mdaa"));
+		System.out.println(solve("rat", "car"));
 	}
 }
