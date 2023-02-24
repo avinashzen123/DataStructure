@@ -1,6 +1,6 @@
 package com.avinash.tree;
 
-public class LeastCommonAncestor {
+public class LeastCommonAncestorBST {
 
 	public static class TreeNode {
 		int val;

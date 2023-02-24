@@ -72,6 +72,23 @@ public class TreeImpl {
 		System.out.print(node.data + "-");
 		inOrder(node.right);
 	}
+	
+	public void inOrderIterative(TreeNode root) {
+		if (root == null) return;
+		List<Integer> list = new ArrayList<>();
+		LinkedList<TreeNode> stack = new LinkedList<>();
+		while(!stack.isEmpty() || root != null) {
+			if (root != null) {
+				stack.push(root);
+				root = root.left;
+			} else {
+				root = stack.pop();
+				list.add(root.data);
+				root = root.right;
+			}
+		}
+		System.out.println("Inorder traveral " + list.toString());
+	}
 
 	public void postOrder() {
 		postOrder(this.head);
@@ -177,14 +194,15 @@ public class TreeImpl {
 		tree.head.left.right = new TreeNode(5);
 		tree.head.right.left = new TreeNode(6);
 		tree.head.right.right = new TreeNode(7);
-//        tree.preOrder();
-//        System.out.println();
-//        tree.inOrder();
-//        System.out.println();
+        tree.preOrder();
+        System.out.println();
+        tree.inOrder();
+        tree.inOrderIterative(tree.head);
+        System.out.println();
 		tree.postOrder();
 		System.out.println();
-//        tree.levelOrder();
-//        tree.totalLevels();
+        tree.levelOrder();
+        tree.totalLevels();
 		tree.postOrderTraversalIterative(tree.head);
 	}
 }
