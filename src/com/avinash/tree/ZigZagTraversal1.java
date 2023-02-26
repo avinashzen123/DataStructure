@@ -22,7 +22,6 @@ public class ZigZagTraversal1 {
 		}
 		@Override
 		public String toString() {
-			// TODO Auto-generated method stub
 			return this.val + " ";
 		}
 	}
@@ -31,14 +30,14 @@ public class ZigZagTraversal1 {
 	public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
 		if (root == null) return List.of();
 		List<List<Integer>> result = new ArrayList<>();
-		boolean isEven = false;
+		boolean isFromLeft = false;
 		Deque<TreeNode> deque = new LinkedList<>();
 		deque.add(root);
 		while(!deque.isEmpty()) {
 			int size = deque.size();
 			List<Integer> curList = new ArrayList<>();
 			while(size -- > 0) {
-				if (isEven) {
+				if (isFromLeft) {
 					TreeNode tmp = deque.pollLast();
 					curList.add(tmp.val);
 					if (tmp.right != null) deque.offerFirst(tmp.right);
@@ -50,7 +49,7 @@ public class ZigZagTraversal1 {
 					if (tmp.right != null) deque.offerLast(tmp.right);
 				}
 			}
-			isEven = !isEven;
+			isFromLeft = !isFromLeft;
 			result.add(curList);
 		}
 		return result;
