@@ -24,6 +24,9 @@ public class MaxDepthBinaryTree {
 		}
 	}
 
+	/*
+	 * Time Complexity : O(n)
+	 */
 	private static class RecursiveSolution {
 		public static int maxDepth(TreeNode root) {
 			if (root == null)
@@ -38,14 +41,15 @@ public class MaxDepthBinaryTree {
 		public static int maxDepth(TreeNode root) {
 			LinkedList<TreeNode> stack = new LinkedList<>();
 			LinkedList<Integer> depths = new LinkedList<>();
-			if (root == null) return 0;
-			
+			if (root == null)
+				return 0;
+
 			stack.add(root);
 			depths.add(1);
 			int depth = 0;
 			int currDepth = 0;
-	
-			while(!stack.isEmpty()) {
+
+			while (!stack.isEmpty()) {
 				root = stack.pollLast();
 				currDepth = depths.pollLast();
 				if (root != null) {

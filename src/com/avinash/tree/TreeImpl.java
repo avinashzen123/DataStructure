@@ -15,6 +15,12 @@ class TreeNode {
 		this.data = data;
 	}
 	
+	public TreeNode(Integer data, TreeNode left, TreeNode right) {
+		this.data =data;
+		this.left = left;
+		this.right = right;
+	}
+	
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
