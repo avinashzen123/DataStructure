@@ -13,7 +13,7 @@ public class Fibonacci {
 		return fibonacciRecursion(n - 1) + fibonacciRecursion(n - 2);
 	}
 
-	// Top down approach : Memoization
+	// Top down approach : Memorization
 	public static int fibonacciMemoization(int n, Map<Integer, Integer> table) {
 		if (!table.containsKey(n)) {
 			table.put(n, fibonacciMemoization(n - 1, table) + fibonacciMemoization(n - 2, table));
