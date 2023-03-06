@@ -25,27 +25,46 @@ public class WaggleSort {
 
 	private static void swap(int[] array, int i) {
 		int tmp = array[i];
-		array[i] = array[i+1];
-		array[i+1] = tmp;
+		array[i] = array[i + 1];
+		array[i + 1] = tmp;
 	}
-	
+
 	/*
 	 * Time complexity : O(n)
 	 */
 	public static void greedySorting(int[] array) {
 		for (int i = 0; i < array.length - 1; i++) {
-			if ((i % 2 == 0 && array[i] > array[i+1]) || (i % 2 != 0 && array[i] < array[i+1])) {
+			if ((i % 2 == 0 && array[i] > array[i + 1]) || (i % 2 != 0 && array[i] < array[i + 1])) {
 				swap(array, i);
 			}
 		}
 	}
-	
+
+	public static void wiggleSortWithDuplicates(int[] nums) {
+		int[] arr = nums.clone();
+		Arrays.sort(arr);
+		int n = nums.length;
+		int i = (n - 1) >> 1, j = n - 1;
+		
+		for (int x = 0; x < n; ++x) {
+			if (x % 2 == 0) {
+				nums[x] = arr[i--];
+			} else {
+				nums[x] = arr[j--];
+			}
+		}
+	}
+
 	public static void main(String[] args) {
-		int[] array = {3,5,2,1,6,4};
-		usingSorting(array);
-		System.out.println(Arrays.toString(array));
-		array = new int[]{3,5,2,1,6,4};
-		greedySorting(array);
-		System.out.println(Arrays.toString(array));
+//		int[] array = { 3, 5, 2, 1, 6, 4 };
+//		usingSorting(array);
+//		System.out.println(Arrays.toString(array));
+//		array = new int[] { 3, 5, 2, 1, 6, 4 };
+//		greedySorting(array);
+//		System.out.println(Arrays.toString(array));
+		
+		int[] array1 = {5,5,5,4,4,4,4};
+		wiggleSortWithDuplicates(array1);
+		System.out.println(Arrays.toString(array1));
 	}
 }
