@@ -26,7 +26,7 @@ public class DutchNationalFlagSorting {
 			if (nums[curr] == 0) {
 				swap(nums, fromStart++, curr++);
 			} else if (nums[curr] == 2) {
-				swap(nums, fromEnd--, curr++);
+				swap(nums, fromEnd--, curr);
 			} else {
 				curr++;
 			}
