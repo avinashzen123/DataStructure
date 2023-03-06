@@ -75,7 +75,7 @@ public class RabinKarp {
 				hashPattern = (alphabateSize * hashPattern + pattern.charAt(i)) % primeNumber;
 				hashText = (alphabateSize * hashText + text.charAt(i)) % primeNumber;
 			}
-
+			System.out.println(" hashText : " + hashText + " hashPattern " + hashPattern + "  largestPolynomialNumber " + largestPolynomial);
 			for (int i = 0; i < textLength - patternLength + 1; i++) {
 				if (hashPattern == hashText) {
 					int j = 0;
@@ -88,13 +88,13 @@ public class RabinKarp {
 						return i;
 					}
 				}
-				if (i < textLength - patternLength) {
+//				if (i < textLength - patternLength) {
 					hashText = ((hashText - text.charAt(i) * largestPolynomial) * alphabateSize
 							+ text.charAt(i + patternLength)) % primeNumber;
 					if (hashText < 0) {
 						hashText += primeNumber;
 					}
-				}
+//				}
 			}
 			return -1;
 		}
