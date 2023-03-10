@@ -16,6 +16,18 @@ public class MinCostClimbing {
 		return Math.min(climbinCost.get(0), climbinCost.get(1));
 	}
 	
+	public int minCostClimbingStairs1(int[] cost) {
+        int dp[] = new int[cost.length + 1];
+        for (int i = 2; i <= cost.length; i++) {
+            // dp[i] = Math.min(dp[i-1], dp[i-2]) + cost[i];
+            int oneStep = cost[i - 1] + dp[i - 1];
+            int twoStep = cost[i - 2] + dp[i - 2];
+            dp[i] = Math.min(oneStep, twoStep);
+        }
+        System.out.println(Arrays.toString(dp));
+        return dp[cost.length ];
+    }
+	
 	public static void main(String[] args) {
 		System.out.println(minCostClimbingStairs(new int[] {10, 15, 20}));
 	}
