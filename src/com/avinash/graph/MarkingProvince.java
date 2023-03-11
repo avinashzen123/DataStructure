@@ -61,6 +61,9 @@ public class MarkingProvince {
 	}
 
 	private static class UnionFindMethod {
+		/*
+		 * Time complexity : O(n^3)
+		 */
 		public int findCircleNum(int[][] m) {
 			int[] parent = new int[m.length];
 			Arrays.fill(parent, -1);

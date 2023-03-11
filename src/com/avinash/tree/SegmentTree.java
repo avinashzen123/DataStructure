@@ -11,6 +11,7 @@ public class SegmentTree {
 		s = a.length;
 		int h = (int) Math.ceil(Math.log(s) / Math.log(2));
 		int maxSize = 2 * (int) Math.pow(2, h) - 1;
+		System.out.println("Max size " + maxSize + " s " + s);
 		stArr = new int[maxSize];
 		constructST(a, 0, s - 1, 0);
 //		[48, 13, 35, 6, 7, 22, 13, 2, 4, 0, 0, 10, 12, 0, 0]

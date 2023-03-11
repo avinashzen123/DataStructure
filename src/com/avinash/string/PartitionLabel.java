@@ -36,11 +36,7 @@ public class PartitionLabel {
 		List<Integer> result = new ArrayList<>();
 		Map<Character, Integer> lastPosition = new HashMap<>();
 		for (int index = 0; index < s.length(); index ++) {
-			char c = s.charAt(index);
-			if (!lastPosition.containsKey(c)) {
-				lastPosition.put(c, 0);
-			}
-			lastPosition.put(c, index);
+			lastPosition.put(s.charAt(index), index);
 		}
 		int size = 0;
 		int end = 0;
@@ -50,6 +46,7 @@ public class PartitionLabel {
 			size++;
 			end = Math.max(end, lastPosition.get(c));
 			if (index == end) {
+				System.out.println("Index " + index + " end " + end + " size " + size);
 				result.add(size);
 				size = 0;
 			}

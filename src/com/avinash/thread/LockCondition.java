@@ -11,6 +11,7 @@ public class LockCondition {
 	private Condition oddCondition ;
 	private Condition evenCondition;
 	private AtomicInteger atomicInteger;
+	
 	public LockCondition() {
 		lock = new ReentrantLock();
 		oddCondition = lock.newCondition();
@@ -21,16 +22,16 @@ public class LockCondition {
 	Thread oddThread = new Thread() {
 		public synchronized void run() {
 			while(true) {
-				while(atomicInteger.get() % 2 != 0) {
+				if(atomicInteger.get() % 2 != 0) {
 					try {
 						lock.tryLock(10, TimeUnit.MILLISECONDS);
-						evenCondition.await(10, TimeUnit.MILLISECONDS);
+						evenCondition.await(1, TimeUnit.SECONDS);
+						System.out.println("Odd Thred " + atomicInteger.getAndAdd(1));
 					} catch (InterruptedException e) {
 						e.printStackTrace();	
+					} finally {
+						lock.unlock();
 					}
-					System.out.println("Odd Thred " + atomicInteger.getAndAdd(1));
-					oddCondition.signal();
-					lock.unlock();
 				}
 			}
 			
@@ -40,16 +41,17 @@ public class LockCondition {
 	Thread eventThread = new Thread() {
 		public synchronized void run() {
 			while(true) {
-				while(atomicInteger.get() % 2 == 0) {
+				if(atomicInteger.get() % 2 == 0) {
 					try {
 						lock.tryLock(10, TimeUnit.MILLISECONDS);
 						oddCondition.await(1, TimeUnit.SECONDS);
+						System.out.println("Even Thread " + atomicInteger.getAndAdd(1));
 					} catch (InterruptedException e) {
 						e.printStackTrace();
+					} finally {
+						evenCondition.signal();
+						lock.unlock();
 					}
-					System.out.println("Even Thread " + atomicInteger.getAndAdd(1));
-					evenCondition.signal();
-					lock.unlock();
 
 				}
 			}
