@@ -1,5 +1,18 @@
 package com.avinash.backtracking;
 
+/**
+ * Given a N*N board with the Knight placed on the first block of an empty
+ * board. Moving according to the rules of chess knight must visit each square
+ * exactly once. Print the order of each cell in which they are visited.
+ * 
+ * There are N2 Cells and for each, we have a maximum of 8 possible moves to
+ * choose from, so the worst running time is O(8N^2).
+ * 
+ * Auxiliary Space: O(N2)
+ *
+ * 
+ * 
+ */
 public class KnightTour {
 	private int[][] chessTable;
 	private int boardSize;
