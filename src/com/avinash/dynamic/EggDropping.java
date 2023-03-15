@@ -8,7 +8,7 @@ public class EggDropping {
 	private int[][] dpTable = new int[Constant.NUM_OF_EGGS + 1][Constant.NUM_OF_FLOORS + 1];
 	
 	public int solve() {
-		// Fist column is initialized with 1
+		// Fist column is initialised with 1
 		dpTable[0][0] = 1;
 		dpTable[1][0] = 1;
 		// if we have 1 egg then checking n floors

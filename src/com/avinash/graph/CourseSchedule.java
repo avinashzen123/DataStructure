@@ -111,9 +111,9 @@ public class CourseSchedule {
 	}
 
 	public static void main(String[] args) {
-//		System.out.println(canFinish(2, new int[][] { { 1, 0 }, { 0, 1 } }));
-//		System.out.println(canFinish(2, new int[][] { { 1, 0 } }));
-//		System.out.println(canFinish(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } }));
+		System.out.println(canFinish(2, new int[][] { { 1, 0 }, { 0, 1 } }));
+		System.out.println(canFinish(2, new int[][] { { 1, 0 } }));
+		System.out.println(canFinish(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } }));
 		System.out.println(Arrays.toString(courseOrder2(5, new int[][] { { 1, 4 }, { 2, 4 }, { 3, 1 }, { 3, 2 } })));
 		System.out.println(Arrays.toString(courseOrder2(4, new int[][] { { 1, 0 }, { 2, 0 }, { 3, 1 }, { 3, 2 } })));
 		System.out.println(Arrays.toString(courseOrder2(2, new int[][] { { 1, 0 }, { 0, 1 } })));

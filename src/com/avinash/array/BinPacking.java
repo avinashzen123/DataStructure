@@ -80,10 +80,13 @@ class FirstFitDecreasingAlgorithm {
 
 public class BinPacking {
 	public static void main(String[] args) {
-		List<Integer> items = Arrays.asList(5, 5, 5);
-		int binCapacity = 5;
-		FirstFitDecreasingAlgorithm algorithm = new FirstFitDecreasingAlgorithm(items, binCapacity);
-		algorithm.solve();
-		algorithm.showResults();
+//		List<Integer> items = Arrays.asList(5, 5, 5);
+//		int binCapacity = 5;
+//		FirstFitDecreasingAlgorithm algorithm = new FirstFitDecreasingAlgorithm(items, binCapacity);
+//		algorithm.solve();
+//		algorithm.showResults();
+		ArrayList<Integer> list = new ArrayList<>();
+		list.add(1);
+		System.out.println(list.get(list.size() - 1));
 	}
 }

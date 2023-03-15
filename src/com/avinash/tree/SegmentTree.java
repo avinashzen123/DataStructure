@@ -54,7 +54,7 @@ public class SegmentTree {
 	 * it uses the method getSumUtil()
 	 */
 	public int getSum(int arrayLength, int queryStart, int queryEnd) {
-		if (queryStart < 0 || queryStart > arrayLength - 1 || queryStart > queryEnd) {
+		if (queryStart < 0 || queryEnd > arrayLength - 1 || queryStart > queryEnd) {
 			System.out.println("Input is invalid");
 			return -1;
 		}
