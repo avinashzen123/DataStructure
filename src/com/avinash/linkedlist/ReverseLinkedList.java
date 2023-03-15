@@ -29,6 +29,29 @@ public class ReverseLinkedList {
 		return reverseLinkedList(next, curNode);
 	}
 	
+	
+	public static LinkedList reverseLinkedListRecr(LinkedList head) {
+		if (head == null || head.next == null) {
+			return head;
+		}
+		LinkedList p = reverseLinkedListRecr(head.next);
+		head.next.next = head;
+		head.next = null;
+		return p;
+	}
+	
+	public static LinkedList reverLinkedListIter(LinkedList head) {
+		LinkedList prev = null;
+		LinkedList cur = head;
+		while(cur != null) {
+			LinkedList nextTmp = cur.next;
+			cur.next = prev;
+			prev = cur;
+			cur = nextTmp;
+		}
+		return prev;
+	}
+	
 	public static void main(String[] args) {
 		LinkedList head = new LinkedList(1, new LinkedList(2, new LinkedList(3, new LinkedList(4))));
 		System.out.println(head);
