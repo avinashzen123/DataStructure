@@ -25,18 +25,6 @@ public class SegmentTree {
 	 * si is index of current node of the segment tree
 	 */
 	public int constructST(int[] array, int start, int end, int treeIndex) {
-//		if (start == end) {
-//			// If only one element is present in the array store it in current node
-//			// of the segment tree and then return;
-//			this.stArr[treeIndex] = array[start];
-//			return array[start];
-//		}
-//		// If more than one element is present, the apply recurrance in the left and
-//		// right subtree and store the sum of values in this node
-//		int mid = getMiddleIndex(start, end);
-//		this.stArr[treeIndex] = constructST(array, start, mid, treeIndex * 2 + 1) + constructST(array, mid + 1, end, treeIndex * 2 + 2);
-//		return this.stArr[treeIndex];
-
 		if (start == end) {
 			stArr[treeIndex] = array[start];
 			return stArr[treeIndex];
@@ -68,7 +56,7 @@ public class SegmentTree {
 	}
 
 	/*
-	 * si -> index of current node in segement tree initially 0 is passed as root is
+	 * startIndex -> index of current node in segement tree initially 0 is passed as root is
 	 * always at index 0 .
 	 * 
 	 * startIndex & endIndex -> start and end indices at segment represented by
@@ -77,12 +65,15 @@ public class SegmentTree {
 	 * queryStart & queryEnd -> start and end indices of the query range
 	 */
 	private int getSumUtil(int startIndex, int endIndex, int queryStart, int queryEnd, int treeIndex) {
+		// If segment of this node is part of given range the return the sum of segment
 		if (queryStart <= startIndex && queryEnd >= endIndex) {
 			return this.stArr[treeIndex];
 		}
+		//if segment of this node is outside the given range
 		if (endIndex < queryStart || startIndex > queryEnd) {
 			return 0;
 		}
+		// If part of the segment overlaps with given range.
 		int midVal = getMiddleIndex(startIndex, endIndex);
 		return getSumUtil(startIndex, midVal, queryStart, queryEnd, 2 * treeIndex + 1)
 				+ getSumUtil(midVal + 1, endIndex, queryStart, queryEnd, 2 * treeIndex + 2);
@@ -95,6 +86,7 @@ public class SegmentTree {
 	 * 
 	 */
 	public void updateVal(int a[], int size, int index, int newVal) {
+		// Check for erroneous input index
 		if (index < 0 || index > size - index) {
 			System.out.println("Input is invalid");
 			return;
@@ -106,8 +98,10 @@ public class SegmentTree {
 	}
 
 	private void updateValUtil(int startIndnex, int endIndex, int updatedIndex, int val, int treeIndex) {
+		// Base case if the input index lies outside the range of this segment.
 		if (updatedIndex < startIndnex || updatedIndex > endIndex)
 			return;
+		// If the input index is in range of this node, the update the value of the node and it childer.
 		this.stArr[treeIndex] = this.stArr[treeIndex] + val;
 		if (endIndex != startIndnex) {
 			int midVal = getMiddleIndex(startIndnex, endIndex);
