@@ -49,13 +49,13 @@ public class CloneGraph {
 			queue.add(node);
 			visited.put(node, new Node(node.val));
 			while(!queue.isEmpty()) {
-				node = queue.poll();
-				for (Node neighbour : node.neighbors) {
+				Node node1 = queue.poll();
+				for (Node neighbour : node1.neighbors) {
 					if (!visited.containsKey(neighbour)) {
 						visited.put(neighbour, new Node(neighbour.val));
 						queue.add(neighbour);
 					}
-					visited.get(node).neighbors.add(visited.get(neighbour));
+					visited.get(node1).neighbors.add(visited.get(neighbour));
 				}
 			}
 			return visited.get(node);

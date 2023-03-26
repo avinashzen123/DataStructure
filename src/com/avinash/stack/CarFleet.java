@@ -41,13 +41,19 @@ public class CarFleet {
 	 * before the destination, so the answer is 3.
 	 * 
 	 */
+	
+	
+	
 	public static int carFleet(int target, int[] position, int[] speed) {
 		int[][] combined = new int[position.length][2];
 		for (int i = 0; i < position.length; i++) {
 			combined[i][0] = position[i];
 			combined[i][1] = speed[i];
 		}
-		Arrays.sort(combined, (i, j) -> i[0] - i[1]);
+		Arrays.stream(combined).map(Arrays::toString).forEach(System.out::println);;
+		System.out.println("==============");
+		Arrays.sort(combined, (i, j) -> i[0]);
+		Arrays.stream(combined).map(Arrays::toString).forEach(System.out::println);;
 		Stack<Integer> stack = new Stack<>();
 		for (int i = position.length-1; i >= 0; i--) {
 			int currentTime = (target - combined[i][0])/combined[i][1];
@@ -57,10 +63,33 @@ public class CarFleet {
 				stack.push(currentTime);
 			}
 		}
+		System.out.println(stack);
 		return stack.size();
 	}
+
+	public static int carFleet2(int target, int[] position, int[] speed) {
+		float arrayTime[] = new float[target + 1];
+		float max = 0;
+		for (int i = 0; i < position.length; i++) {
+			arrayTime[position[i]] = (float)(target - position[i])/speed[i];
+		}
+		System.out.println(Arrays.toString(arrayTime));
+		int count = 0;
+		for (int i = target; i >= 0; i--) {
+			if (arrayTime[i] > max) {
+				System.out.println("Changing max Current max " + max + " To max " + arrayTime[i]);
+				count++;
+				max = arrayTime[i];
+			}
+		}
+		return count;
+	}
+	
 	
 	public static void main(String[] args) {
-		System.out.println(carFleet(12, new int[] {10,8,0,5,3}, new int[] {2,4,1,1,3}));
+		System.out.println(carFleet2(12, new int[] {10,8,0,5,3}, new int[] {2,4,1,1,3}));
+		System.out.println(carFleet2(10, new int[] {0, 4, 2}, new int[] {2, 1, 3}));
+//		System.out.println(carFleet(12, new int[] {10,8,0,5,3}, new int[] {2,4,1,1,3}));
+//		System.out.println(carFleet(12, new int[] {10,0,8,5,3}, new int[] {2,4,1,1,3}));
 	}
 }

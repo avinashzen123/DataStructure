@@ -1,19 +1,23 @@
 package com.avinash.interview;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
 public class GroupAnagrams {
-
+	
+	// Not working for all test cases;
 	public static List<List<String>> groupAnagrams(String[] strs) {
 		Map<Integer, List<String>> res = new TreeMap<>();
 		for (int i = strs.length - 1; i >= 0; i--) {
 			String s = strs[i];
 			int count = s.chars().sum();
+			System.out.println(s+  " Hash " + count);
 			if (res.containsKey(count)) {
 				res.get(count).add(s);
 			} else {
@@ -27,6 +31,25 @@ public class GroupAnagrams {
 		return res1;
 	}
 
+	// Working for all test case;
+	public static List<List<String>> groupAnagrams1(String[] strs) {
+		List<List<String>> res = new ArrayList<>();
+		if (strs.length == 0) return res;
+		HashMap<String, List<String>> map = new HashMap<>();
+		for (String str : strs) {
+			int[] hash = new int[26];
+			for (char c : str.toCharArray()) {
+				hash[c - 'a']++;
+			}
+			String key = new String(Arrays.toString(hash));
+			System.out.println("String " + str  + " Hash Key " + key);
+			map.computeIfAbsent(key, k -> new ArrayList<>());
+			map.get(key).add(str);
+		}
+		return res;
+	}
+	
+	
 	public static List<List<String>> groupAnagrams(List<String> words) {
 		Map<String, List<String>> map = new TreeMap<>();
 		for (String word : words) {
@@ -44,9 +67,9 @@ public class GroupAnagrams {
 	}
 
 	public static void main(String[] args) {
-		String[] strs = { "eat", "tea", "tan", "ate", "nat", "bat" };
+		String[] strs = { "tab","eat", "tea", "tan", "ate", "nat", "bat" };
 //		strs = new String[]{"ac","c"};
-		System.out.println(groupAnagrams(strs));
+		System.out.println(groupAnagrams1(strs));
 
 	}
 }
