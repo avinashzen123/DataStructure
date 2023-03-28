@@ -5,7 +5,9 @@ import java.util.Map;
 
 public class OptimalStringPartitioning {
 
-	/*
+	/**
+	 * <a href="https://leetcode.com/problems/optimal-partition-of-string/description/">Leet code</a>
+	 * 
 	 * Given a string s, partition the string into one or more substrings such that
 	 * the characters in each substring are unique. That is, no letter appears in a
 	 * single substring more than once.
@@ -34,14 +36,17 @@ public class OptimalStringPartitioning {
 				ans++;
 				dict.clear();
 				dict.put(c, dict.getOrDefault(c, 0) + 1);
+				System.out.println("Increased counter");
 			} else {
 				dict.put(c, dict.getOrDefault(c, 0) + 1);
 			}
+			System.out.println(dict);
 		}
 		return ans;
 	}
 	
 	public static void main(String[] args) {
 		System.out.println(partitionString("abacaba"));
+//		System.out.println(partitionString("ssssss"));
 	}
 }
