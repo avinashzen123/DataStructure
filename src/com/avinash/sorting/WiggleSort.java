@@ -12,7 +12,7 @@ import java.util.Arrays;
  * 
  * https://leetcode.com/problems/wiggle-sort/description/
  */
-public class WaggleSort {
+public class WiggleSort {
 	/*
 	 * Time complexity : o(n log(n))
 	 */
@@ -40,9 +40,11 @@ public class WaggleSort {
 		}
 	}
 
+	// https://leetcode.com/problems/wiggle-sort-ii/
 	public static void wiggleSortWithDuplicates(int[] nums) {
 		int[] arr = nums.clone();
 		Arrays.sort(arr);
+		System.out.println(Arrays.toString(arr));
 		int n = nums.length;
 		int i = (n - 1) >> 1, j = n - 1;
 		
