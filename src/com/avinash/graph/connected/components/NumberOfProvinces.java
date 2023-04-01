@@ -1,4 +1,4 @@
-package com.avinash.graph.disjointset;
+package com.avinash.graph.connected.components;
 
 public class NumberOfProvinces {
 	public int findCircleNum(int[][] isConnected) {
