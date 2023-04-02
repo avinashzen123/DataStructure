@@ -78,7 +78,7 @@ public class BestTimeToBuySellStock {
 				while (j + 1 < prices.length && (prices[j] < prices[j + 1]))
 					j++;
 				totalProfit = totalProfit + (prices[j] - prices[i]);
-				i = j + 1;
+				i = j;
 			}
 		}
 		return totalProfit;
@@ -225,9 +225,9 @@ public class BestTimeToBuySellStock {
 	public static void main(String[] args) {
 //		System.out.println(maxProfilt(new int[] { 7, 1, 5, 3, 6, 4 }));
 
-		// int[] prices = new int[] {7,1,5,3,6,4};
-		int[] prices = new int[] { 1, 2, 3, 4, 5 };
-//		System.out.println(maxProfit2(prices));
+		 int[] prices = new int[] {7,1,5,3,6,4};
+//		int[] prices = new int[] { 1, 2, 3, 4, 5 };
+		System.out.println(maxProfit2(prices));
 
 		// int[] prices1 = new int[]{3,2,6,5,0,3};
 		// int[] prices1 = new int[]{3,3,5,0,0,3,1,4};
