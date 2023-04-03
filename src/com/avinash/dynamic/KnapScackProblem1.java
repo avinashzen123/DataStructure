@@ -17,16 +17,18 @@ public class KnapScackProblem1 {
 		
 		for (int valIndex = 1; valIndex <= numberOfItems; valIndex++) {
 			for (int weight = 1; weight <= capacity; weight++) {
+				int notConsiderintCurrentItem = dpTable[valIndex - 1][weight];
 				if (weights[valIndex] <= weight) {
-					dpTable[valIndex][weight] = Math.max(dpTable[valIndex - 1][weight],
-							values[valIndex] + dpTable[valIndex - 1][weight - weights[valIndex]]);
+					int remainingWeight = weight - weights[valIndex];
+					dpTable[valIndex][weight] = Math.max(notConsiderintCurrentItem,
+							values[valIndex] + dpTable[valIndex - 1][remainingWeight]);
 				} else {
-					dpTable[valIndex][weight] = dpTable[valIndex-1][weight];
+					dpTable[valIndex][weight] = notConsiderintCurrentItem;
 				}
 			}
 		}
 		Arrays.stream(dpTable).map(Arrays::toString).forEach(System.out::println);
-		System.out.println("Total Benifit :" + dpTable[numberOfItems][capacity]);
+		System.out.println("Total Benifit :" +  dpTable[numberOfItems][capacity]);
 		for (int i = numberOfItems, w = capacity; i > 0; i--) {
 			if(dpTable[i][w] != 0 && dpTable[i][w] != dpTable[i-1][w]) {
 				System.out.println("We take item # " +i);

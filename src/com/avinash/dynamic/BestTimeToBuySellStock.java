@@ -1,6 +1,7 @@
 package com.avinash.dynamic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -181,6 +182,25 @@ public class BestTimeToBuySellStock {
 		}
 		return dp[transactions][prices.length - 1];
 	}
+	
+	public int maxProfit_4_2(int k, int[] prices) {
+        int[][] dp = new int[k + 1][prices.length];
+        for (int transaction = 1; transaction <= k; transaction++) {
+            for (int priceIdx = 1; priceIdx < prices.length; priceIdx ++){
+                int maxProfit = 0;
+                for (int curPriceidx = 0; curPriceidx < priceIdx; curPriceidx++) {
+                    int oneLessTransacProfit = dp[transaction - 1][curPriceidx];
+                    int purchasePrice = prices[curPriceidx];
+                    int sellingPrice = prices[priceIdx];
+                    maxProfit = Math.max(maxProfit, sellingPrice - purchasePrice + oneLessTransacProfit);
+                }
+                int prevMaxProfit = dp[transaction][priceIdx - 1];
+                dp[transaction][priceIdx] = Math.max(prevMaxProfit, maxProfit);
+            }
+        }
+        Arrays.stream(dp).map(Arrays::toString).forEach(System.out::println);
+        return dp[k][prices.length - 1];
+    }
 
 	/*
 	 * https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/
@@ -192,7 +212,7 @@ public class BestTimeToBuySellStock {
 	 * transactions as you like (i.e., buy one and sell one share of the stock
 	 * multiple times) with the following restrictions:
 	 * 
-	 * After you sell your stock, you cannot buy stock on the next day (i.e.,
+	 * After you sell your stock, you cannot buy stock on the next da y (i.e.,
 	 * cooldown one day). Note: You may not engage in multiple transactions
 	 * simultaneously (i.e., you must sell the stock before you buy again).
 	 * 
