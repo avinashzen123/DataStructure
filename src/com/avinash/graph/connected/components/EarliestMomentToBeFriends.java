@@ -1,4 +1,4 @@
-package com.avinash.graph.disjointset;
+package com.avinash.graph.connected.components;
 
 import java.util.Arrays;
 import java.util.Comparator;

@@ -1,4 +1,4 @@
-package com.avinash.array;
+package com.avinash.array.sum;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -23,6 +23,29 @@ public class CountVowelPermutation {
         return (int)Arrays.stream(dpTable[n]).reduce(0, Long::sum);
     }
 	
+	public int countVowelPermutation1(int n) {
+        long aCount = 1;
+        long eCount = 1;
+        long iCount = 1;
+        long oCount = 1;
+        long uCount = 1;
+        long mod = (long)Math.pow(10, 9) + 7;
+        for (int i = 1; i < n; i++) {
+            long curACount = (eCount + iCount + uCount) % mod;
+            long curECount = (aCount + iCount) % mod;
+            long curICount = (eCount + oCount) % mod;
+            long curOCouut = iCount % mod;
+            long curUCount = (iCount + oCount) % mod;
+            eCount = curECount;
+            aCount = curACount;
+            iCount = curICount;
+            uCount = curUCount;
+            aCount = curACount;
+            oCount = curOCouut;
+        }
+        return (int)((aCount + eCount + iCount + oCount + uCount) % mod);
+    }
+	
 	public static void main(String[] args) {
 		System.out.println(Double.MAX_VALUE);
 		System.out.println(countVowelPermutation(5));

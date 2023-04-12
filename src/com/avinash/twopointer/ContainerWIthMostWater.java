@@ -1,4 +1,4 @@
-package com.avinash.dynamic;
+package com.avinash.twopointer;
 
 public class ContainerWIthMostWater {
 	static class BruteForce {

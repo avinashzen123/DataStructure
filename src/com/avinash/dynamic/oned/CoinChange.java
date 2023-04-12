@@ -27,21 +27,45 @@ public class CoinChange {
 	 * @param amount
 	 * @return
 	 */
-	public static int coinChange(int[] coins, int amount) {
-		int[] dp = new int[amount + 1];
-		Arrays.fill(dp, Integer.MAX_VALUE);
-		Arrays.sort(coins);
-		dp[0] = 0;
-		for (int currentAmount = 1; currentAmount <= amount; currentAmount++) {
+	static class CoinChange_1_TopDown {
+		static int coinChange(int[] coins, int amount) {
+			if (amount < 1) return 0;
+			return coinChange(coins, amount, new int[amount]);
+		}
+
+		private static int coinChange(int[] coins, int rem, int[] count) {
+			if (rem < 0) return -1;
+			if (rem == 0) return 0;
+			if (count[rem - 1] != 0) return count[rem - 1];
+			int min = Integer.MAX_VALUE;
 			for (int coin : coins) {
-				if (currentAmount - coin >= 0) {
-					dp[currentAmount] = Math.min(dp[currentAmount], 1 + dp[currentAmount - coin]);
+				int res = coinChange(coins, rem - coin, count);
+				if (res >= 0 && res < min) 
+					min = res + 1;
+			}
+			count[rem - 1] = min == Integer.MIN_VALUE ? - 1: min;
+			return count[rem - 1];
+		}
+	}
+	
+	static class CointChange_1_BottomUp {
+		public static int coinChange(int[] coins, int amount) {
+			int[] dp = new int[amount + 1];
+			Arrays.fill(dp, Integer.MAX_VALUE);
+			Arrays.sort(coins);
+			dp[0] = 0;
+			for (int currentAmount = 1; currentAmount <= amount; currentAmount++) {
+				for (int coin : coins) {
+					if (currentAmount - coin >= 0) {
+						dp[currentAmount] = Math.min(dp[currentAmount], 1 + dp[currentAmount - coin]);
+					}
 				}
 			}
+			System.out.println(Arrays.toString(dp));
+			return dp[amount] == Integer.MAX_VALUE || dp[amount] < 0 ? -1 : dp[amount];
 		}
-		System.out.println(Arrays.toString(dp));
-		return dp[amount] == Integer.MAX_VALUE || dp[amount] < 0 ? -1 : dp[amount];
 	}
+	
 
 	/**
 	 * https://leetcode.com/problems/coin-change-ii/
@@ -111,15 +135,15 @@ public class CoinChange {
 
 //		int[] coins = new int[] {3};
 //		int amount = 2;
-//		System.out.println(coinChange(coins, amount));
+		System.out.println(CointChange_1_BottomUp.coinChange(coins, amount));
 
 //		int[] coins1 = new int[] {186,419,83,408};
 //		int amount1 = 6249;
 //		System.out.println(coinChange(coins1, amount1));
-		
-		System.out.println(combinationOfCoinChangeDP(new int[] {2}, 3));
-		
-		System.out.println(combinationOfCoinChangeDP(new int[] {1,2,5}, 5));
+//		
+//		System.out.println(combinationOfCoinChangeDP(new int[] {2}, 3));
+//		
+//		System.out.println(combinationOfCoinChangeDP(new int[] {1,2,5}, 5));
 //		
 //		System.out.println(combinationOfCoinChangeDP(new int[] {3,5,7,8,9,10,11}, 500));
 	}

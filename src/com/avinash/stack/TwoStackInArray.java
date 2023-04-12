@@ -7,7 +7,6 @@ public class TwoStackInArray {
 	int arr[];
 
 	public TwoStackInArray(int n) {
-		// TODO Auto-generated constructor stub
 		arr = new int[n];
 		size = n;
 		top1 = -1;
